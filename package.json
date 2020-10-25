@@ -20,7 +20,9 @@
 	"author": "Maximilian Schiller <hello@mxis.ch>",
 	"license": "MIT",
 	"dependencies": {
+		"axios": "^0.21.0",
 		"lowdb": "^1.0.0",
+		"nodemailer": "^6.4.14",
 		"signale": "^1.4.0"
 	},
 	"devDependencies": {

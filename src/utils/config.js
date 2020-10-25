@@ -2,8 +2,18 @@ const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
 const defaultConfig = {
-	username: '',
-	password: '',
+	ackee: {
+		username: '',
+		password: '',
+		server: ''
+	},
+	email: {
+		host: '',
+		port: '',
+		username: '',
+		password: '',
+		from: ''
+	},
 	reports: []
 }
 
