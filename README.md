@@ -24,8 +24,8 @@ On the first run [ackee-report](https://github.com/BetaHuhn/ackee-report) will a
 - *Ackee server* - The endpoint of your Ackee instance
 - *Ackee username* - Your Ackee username you use to login to the UI
 - *Ackee password* - Your Ackee password you use to login to the UI
-- *SMTP host* - SMTP host (more info [here](#%EF%B8%8F-configuration))
-- *SMTP port* - SMTP port (more info [here](#%EF%B8%8F-configuration))
+- *SMTP host* - more info [here](#%EF%B8%8F-configuration)
+- *SMTP port* - more info [here](#%EF%B8%8F-configuration)
 - *SMTP username* - more info [here](#%EF%B8%8F-configuration)
 - *SMTP password* - more info [here](#%EF%B8%8F-configuration)
 - *SMTP from* - more info [here](#%EF%B8%8F-configuration)
@@ -50,13 +50,13 @@ Options:
 
 ## 🛠️ Examples
 
-Running
+Run:
 
 ```shell
 ackee-report generate -d example.com -t hello@example.com
 ```
 
-will generate a report for the domain `example.com` and send it via email to `hello@example.com`.
+to generate a report for the domain `example.com` and send it via email to `hello@example.com`.
 
 To do this every month, create a cron job:
 
