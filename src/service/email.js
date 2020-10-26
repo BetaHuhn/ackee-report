@@ -1,4 +1,6 @@
 const nodemailer = require('nodemailer')
+const ejs = require('ejs')
+const path = require('path')
 const loadConfig = require('../Config')
 
 class Email {
@@ -16,42 +18,12 @@ class Email {
 		this.transporter = transporter
 	}
 
-	build(domains, endpoint, to) {
-		const total = domains.reduce((n, { facts }) => n + facts.viewsMonth, 0)
-		const durations = domains.filter((domain) => domain.facts.averageDuration > 0)
-		const average = Math.round((durations.reduce((n, { facts }) => n + facts.averageDuration, 0) / durations.length) / 1000)
-		const head = `
-			<h2>Ackee report</h2>
-			<p>You've had ${ total } visitors in total 🎉! Each visitor stayed on you website for an average of ${ average } seconds. See below for a more detailed report of each domain:</p>
+	async html(data, endpoint, to) {
+		const generatedAt = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
 
-		`
-
-		const domainData = (domain) => `
-			<h2>${ domain.title }</h2>
-			<p>Average views per day: ${ domain.facts.averageViews }</p>
-			<p>Average duration: ${ domain.facts.averageDuration / 1000 } seconds</p>
-			<p>Views this month: ${ domain.facts.viewsMonth }</p>
-			<p>Top pages:</p>
-			<ul>${ domain.statistics.pages.map((page) => `<li>${ page.id } - ${ page.count } visits</li>`) }</ul>
-			<p>Top referrers:</p>
-			<ul>${ domain.statistics.referrers.map((referrer) => `<li>${ referrer.id } - ${ referrer.count } visits</li>`).join('') }</ul>
-		`
-
-		const names = domains.map((domain) => domain.title).join(', ')
-		const footer = `
-			<br>
-			<p>View all current statistics on <a href="${ endpoint }">${ endpoint }</a></p>
-			<p>This report was generated at ${ new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') } for ${ names } and sent to ${ to }</p>
-		`
-
-		const html = `
-			${ head }
-			${ domains.map(domainData).join('') }
-			${ footer }
-		`
+		const html = await ejs.renderFile(path.join(__dirname, '../templates/ackee.ejs'), { domains: data.domains, total: data.views, durationAvg: data.durationAvg, names: data.names, namesShort: data.namesShort, endpoint, to, generatedAt })
 
 		return html
-
 	}
 
 	send(from, to, subject, html) {
@@ -74,16 +46,17 @@ class Email {
 	}
 }
 
-const report = async function(domains, to) {
-	return new Promise((resolve) => {
+const report = async function(data, to) {
+	// eslint-disable-next-line no-async-promise-executor
+	return new Promise(async (resolve) => {
 		const config = loadConfig()
 
 		const { host, port, username, password, from } = config.get('email')
 
 		const email = new Email(host, port, username, password)
-		const html = email.build(domains, config.get('ackee').server, to)
+		const html = await email.html(data, config.get('ackee').server, to)
 
-		const subject = `Ackee report for ${ domains.map((domain) => domain.title).join(', ') }`
+		const subject = `Ackee report for ${ data.namesShort }`
 
 		email.send(from, to, subject, html).then((info) => {
 			resolve(info)

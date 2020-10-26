@@ -67,7 +67,7 @@ class Ackee {
 
 	}
 
-	async domains() {
+	async getDomains() {
 		try {
 			const query = `
 				query getDomains {
@@ -94,7 +94,7 @@ class Ackee {
 		}
 	}
 
-	async domain(id) {
+	async _getDomainData(id) {
 		try {
 			const query = `
 				query getDomain($id: ID!) {
@@ -115,23 +115,23 @@ class Ackee {
 								id
 								count
 							}
-							languages(sorting: TOP, limit:5) {
+							languages(sorting: TOP, limit:3) {
 								id
 								count
 							}
-							browsers(sorting: TOP, type: WITH_VERSION, limit:5) {
+							browsers(sorting: TOP, type: WITH_VERSION, limit:3) {
 								id
 								count
 							}
-							devices(sorting: TOP, type: WITH_MODEL, limit:5) {
+							devices(sorting: TOP, type: WITH_MODEL, limit:3) {
 								id
 								count
 							}
-							sizes(sorting: TOP, type: SCREEN_RESOLUTION, limit:5) {
+							sizes(sorting: TOP, type: SCREEN_RESOLUTION, limit:3) {
 								id
 								count
 							}
-							systems(sorting: TOP, type: NO_VERSION, limit:5) {
+							systems(sorting: TOP, type: NO_VERSION, limit:3) {
 								id
 								count
 							}
@@ -159,6 +159,49 @@ class Ackee {
 			console.error(err)
 			process.exit(0)
 		}
+	}
+
+	async get(ids) {
+		const getData = async () => Promise.all(ids.map((id) => this._getDomainData(id)))
+		const data = await getData()
+
+		const durationAvg = () => {
+			const durations = data.filter((domain) => domain.facts.averageDuration > 0)
+			const avg = data.reduce((n, { facts }) => n + facts.averageDuration, 0) / durations.length
+			return Math.round(avg / 1000)
+		}
+
+		const names = data.map((domain) => domain.title).join(', ')
+		const namesShort = (data.length > 2 ? data.slice(0, 2) : data).map((domain) => domain.title).join(', ') + ` and ${ data.length - 2 } more`
+
+		const total = data.reduce((n, { facts }) => n + facts.viewsMonth, 0)
+
+		const domains = data.map((domain) => {
+			return {
+				id: domain.id,
+				title: domain.title,
+				viewsAvgDay: domain.facts.averageViews,
+				viewsMonth: domain.facts.viewsMonth,
+				durationAvg: Math.round(domain.facts.averageDuration / 1000),
+				pages: domain.statistics.pages,
+				referrers: domain.statistics.referrers,
+				languages: domain.statistics.languages,
+				browsers: domain.statistics.browsers,
+				devices: domain.statistics.devices,
+				sizes: domain.statistics.sizes,
+				systems: domain.statistics.systems
+			}
+		})
+
+		const result = {
+			views: total,
+			durationAvg: durationAvg(),
+			names,
+			namesShort,
+			domains
+		}
+
+		return result
 	}
 
 }

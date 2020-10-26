@@ -1,10 +1,10 @@
 const fs = require('fs')
 
-const report = async function(domains, output) {
+const report = async function(data, output) {
 	return new Promise((resolve, reject) => {
-		const data = JSON.stringify(domains, null, 2)
+		const result = JSON.stringify(data, null, 2)
 
-		fs.writeFile(output, data, (err) => {
+		fs.writeFile(output, result, (err) => {
 			if (err) reject(err)
 			resolve()
 		})

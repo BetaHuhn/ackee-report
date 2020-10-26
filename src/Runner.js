@@ -28,7 +28,7 @@ class Runner {
 			if (domain !== undefined) {
 				spinner.text = 'Getting domains by title...'
 
-				domains = await ackee.domains()
+				domains = await ackee.getDomains()
 
 				if (domain[0] !== 'all') {
 					domains = domains.filter((aDomain) => domain.includes(aDomain.title))
@@ -41,10 +41,8 @@ class Runner {
 				return spinner.fail(' error: no domains found')
 			}
 
-			const getData = async () => Promise.all(domains.map((id) => ackee.domain(id)))
-
-			spinner.text = 'Getting domain data...'
-			const data = await getData()
+			spinner.text = 'Getting data...'
+			const data = await ackee.get(domains)
 
 			if (service === 'email') {
 				if (!to) return spinner.fail(' error: no recipient specified with --to')
@@ -83,7 +81,7 @@ class Runner {
 
 			spinner.text = 'Login successfull, getting domains...'
 
-			let domains = await ackee.domains()
+			let domains = await ackee.getDomains()
 
 			if (args.length > 0) {
 				domains = domains.filter((domain) => args.includes(domain.title))
