@@ -1,7 +1,7 @@
 const Ackee = require('./Interface')
 const ora = require('ora')
 const loadConfig = require('./Config')
-const emailReport = require('./service/email')
+const Report = require('./service')
 
 class Runner {
 	constructor(args, options) {
@@ -13,7 +13,7 @@ class Runner {
 	}
 
 	async report() {
-		const { domain, id, service, to } = this.args
+		const { domain, id, service, to, output } = this.args
 		const config = this.config
 
 		const spinner = ora(`Getting Ackee token from server...`).start()
@@ -46,10 +46,17 @@ class Runner {
 			if (service === 'email') {
 				if (!to) return spinner.fail(' error: no recipient specified with --to')
 
-				spinner.text = 'Generating report...'
-				await emailReport(data, to)
+				spinner.text = 'Generating email...'
+				await Report.email(data, to)
 
 				return spinner.succeed(` Report sent to: ${ to.join(', ') }`)
+			} else if (service === 'json') {
+				if (!output) return spinner.fail(' error: no output path specified with --output')
+
+				spinner.text = 'Generating json...'
+				await Report.json(data, output)
+
+				return spinner.succeed(` Report saved to ${ output }`)
 			}
 
 			return spinner.fail(' error: service not found specified')

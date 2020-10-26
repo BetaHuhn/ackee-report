@@ -15,6 +15,7 @@ program
 	.option('-d, --domain <titles...>', 'specify domains by title')
 	.option('-i, --id <ids...>', 'specify domains by id')
 	.option('-t, --to <recipient...>', 'to whom the report should be sent')
+	.option('-o, --output <file>', 'path to output file')
 	.action((args, program) => {
 		const runner = new Runner(args, program)
 		runner.report()
