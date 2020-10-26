@@ -18,7 +18,8 @@ class Email {
 
 	build(domains, endpoint, to) {
 		const total = domains.reduce((n, { facts }) => n + facts.viewsMonth, 0)
-		const average = domains.reduce((n, { facts }) => n + facts.averageDuration, 0) / domains.length
+		const durations = domains.filter((domain) => domain.facts.averageDuration > 0)
+		const average = Math.round((durations.reduce((n, { facts }) => n + facts.averageDuration, 0) / durations.length) / 1000)
 		const head = `
 			<h2>Ackee report</h2>
 			<p>You've had ${ total } visitors in total 🎉! Each visitor stayed on you website for an average of ${ average } seconds. See below for a more detailed report of each domain:</p>
