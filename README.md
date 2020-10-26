@@ -95,6 +95,7 @@ Enter the values on the first run of [ackee-report](https://github.com/BetaHuhn/
 Common providers:
 
 <details><summary>Gmail</summary>
+
 If you use gmail to send emails, use these values:
 
 - *Host* - `smtp.gmail.com`
@@ -105,6 +106,7 @@ If you use gmail to send emails, use these values:
 </details>
 
 <details><summary>SendGrid</summary>
+
 If you use SendGrid to send emails, use these values:
 
 - *Host* - `smtp.sendgrid.net`
@@ -114,6 +116,7 @@ If you use SendGrid to send emails, use these values:
 </details>
 
 <details><summary>MailGun</summary>
+
 If you use SendGrid to send emails, use these values:
 
 - *Host* - `smtp.mailgun.org`
@@ -122,6 +125,16 @@ If you use SendGrid to send emails, use these values:
 - *Password* - get your password [here](https://app.mailgun.com/app/domains)
 
 </details>
+
+## 📝 To do
+
+Here is what's currently planned for [ackee-report](https://github.com/BetaHuhn/ackee-report):
+
+- include more data in report
+- better design/structure of email report
+- more customization of data included in report
+- change config file via cli
+- add more services (e.g. Telegram)
 
 ## 💻 Development
 
