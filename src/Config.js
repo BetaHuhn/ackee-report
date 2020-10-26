@@ -25,6 +25,11 @@ const loadConfig = function() {
 		config.set('email.host', host)
 	}
 
+	if (!config.get('email.port')) {
+		const port = prompt('SMTP port: ')
+		config.set('email.port', port)
+	}
+
 	if (!config.get('email.username')) {
 		const username = prompt('SMTP username: ')
 		config.set('email.username', username)
@@ -38,11 +43,6 @@ const loadConfig = function() {
 	if (!config.get('email.from')) {
 		const from = prompt('SMTP from field: ')
 		config.set('email.from', from)
-	}
-
-	/* Defaults, can only be changed in config file */
-	if (!config.get('email.port')) {
-		config.set('email.port', 465)
 	}
 
 	return config

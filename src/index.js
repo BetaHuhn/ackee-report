@@ -10,12 +10,12 @@ program
 program
 	.command('generate')
 	.alias('report')
-	.description('generate report and send via specified service')
-	.option('-s, --service <name>', 'service to use', 'email')
+	.description('Generates report and sends it via specified service')
 	.option('-d, --domain <titles...>', 'specify domains by title')
 	.option('-i, --id <ids...>', 'specify domains by id')
-	.option('-t, --to <recipient...>', 'to whom the report should be sent')
-	.option('-o, --output <file>', 'path to output file')
+	.option('-t, --to <recipient...>', 'to whom the report should be sent (when using email)')
+	.option('-o, --output <file>', 'path to output file (when using email)')
+	.option('-s, --service <name>', 'service to use', 'email')
 	.action((args, program) => {
 		const runner = new Runner(args, program)
 		runner.report()
