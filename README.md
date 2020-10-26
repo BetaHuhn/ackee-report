@@ -24,11 +24,11 @@ On the first run [ackee-report](https://github.com/BetaHuhn/ackee-report) will a
 - *Ackee server* - The endpoint of your Ackee instance
 - *Ackee username* - Your Ackee username you use to login to the UI
 - *Ackee password* - Your Ackee password you use to login to the UI
-- *SMTP host* - SMTP host (more info [here](#configuration))
-- *SMTP port* - SMTP port (more info [here](#configuration))
-- *SMTP username* - more info [here](#configuration)
-- *SMTP password* - more info [here](#configuration)
-- *SMTP from* - more info [here](#configuration)
+- *SMTP host* - SMTP host (more info [here](#%EF%B8%8F-configuration))
+- *SMTP port* - SMTP port (more info [here](#%EF%B8%8F-configuration))
+- *SMTP username* - more info [here](#%EF%B8%8F-configuration)
+- *SMTP password* - more info [here](#%EF%B8%8F-configuration)
+- *SMTP from* - more info [here](#%EF%B8%8F-configuration)
 
 The configuration will be stored in your home directory: `~/.config/configstore/ackee-report.json`
 
