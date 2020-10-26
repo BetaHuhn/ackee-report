@@ -1,8 +1,8 @@
 {
 	"name": "ackee-report",
-	"version": "0.0.1",
+	"version": "0.2.0",
 	"description": "",
-	"main": "src/index.js",
+	"bin": "./src/index.js",
 	"scripts": {
 		"lint": "eslint ./src/",
 		"dev": "nodemon src/index.js",
@@ -21,9 +21,11 @@
 	"license": "MIT",
 	"dependencies": {
 		"axios": "^0.21.0",
-		"lowdb": "^1.0.0",
+		"commander": "^6.2.0",
+		"configstore": "^5.0.1",
 		"nodemailer": "^6.4.14",
-		"signale": "^1.4.0"
+		"ora": "^5.1.0",
+		"prompt-sync": "^4.2.0"
 	},
 	"devDependencies": {
 		"@betahuhn/eslint-config-node": "^0.1.0",

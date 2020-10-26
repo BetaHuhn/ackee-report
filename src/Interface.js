@@ -1,5 +1,4 @@
 const axios = require('axios')
-const log = require('../utils/log')
 
 class Ackee {
 	constructor(server, username, password) {
@@ -23,6 +22,10 @@ class Ackee {
 				console.log(err.response)
 				err.name = 'AckeeApiError'
 				err.message = `${ err.response.data } (${ err.response.statusCode } status code)`
+				throw err
+			} else {
+				console.error(err)
+				throw err
 			}
 		})
 	}
@@ -58,7 +61,7 @@ class Ackee {
 			this.axios.defaults.headers.common['Authorization'] = `Bearer ${ token }`
 
 		} catch (err) {
-			log.fatal(err)
+			console.error(err)
 			process.exit(0)
 		}
 
@@ -86,7 +89,7 @@ class Ackee {
 			return domains
 
 		} catch (err) {
-			log.fatal(err)
+			console.error(err)
 			process.exit(0)
 		}
 	}
@@ -135,7 +138,7 @@ class Ackee {
 			return domain
 
 		} catch (err) {
-			log.fatal(err)
+			console.error(err)
 			process.exit(0)
 		}
 	}

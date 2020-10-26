@@ -1,35 +1,44 @@
-const loadConfig = require('./utils/config')
-const log = require('./utils/log')
-const Ackee = require('./api')
-const emailReport = require('./service/email')
+#!/usr/bin/env node
 
-const config = loadConfig()
+const program = require('commander')
+const packageJson = require('../package.json')
+const Runner = require('./Runner')
 
-log.info(config.value())
+program
+	.version(packageJson.version, '-v, --version')
 
-const run = async function() {
-	const { server, username, password } = config.get('ackee').value()
-
-	const ackee = new Ackee(server, username, password)
-	await ackee.login()
-
-	const reports = config.get('reports').value()
-
-	reports.forEach(async (report) => {
-
-		const ids = report.ids
-
-		const getData = async () => {
-			return Promise.all(ids.map((id) => ackee.domain(id)))
-		}
-
-		const data = await getData()
-
-		if (report.type === 'email') {
-			await emailReport(data, report)
-		}
-
+program
+	.command('send [domains...]')
+	.alias('report')
+	.description('generate report and send via specified service')
+	.option('-s, --service <name>', 'service to use', 'email')
+	.option('-i, --ids <domains...>', 'directly specify domain ids')
+	.requiredOption('-t, --to <email...>', 'to whom the report should be sent')
+	.action((args, program) => {
+		const runner = new Runner(args, program)
+		runner.report()
 	})
-}
 
-run()
+program
+	.command('domains [titles...]')
+	.description('list all domains')
+	.action((args, program) => {
+		const runner = new Runner(args, program)
+		runner.domains()
+	})
+
+program
+	.command('config')
+	.description('output current config')
+	.action((args, program) => {
+		const runner = new Runner(args, program)
+		runner.outputConfig()
+	})
+
+program.on('command:*', (operands) => {
+	console.error(`error: unknown command '${ operands[0] }'\n`)
+	program.help()
+	process.exitCode = 1
+})
+
+program.parse(process.argv)

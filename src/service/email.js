@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer')
-const loadConfig = require('../utils/config')
+const loadConfig = require('../Config')
 
 class Email {
 	constructor(host, port, username, password) {
@@ -16,11 +16,11 @@ class Email {
 		this.transporter = transporter
 	}
 
-	build(domains, endpoint, report) {
+	build(domains, endpoint, interval, to) {
 		const total = domains.reduce((n, { facts }) => n + facts.viewsMonth, 0)
 		const average = domains.reduce((n, { facts }) => n + facts.averageDuration, 0) / domains.length
 		const head = `
-			<h2>Ackee ${ report.interval } report</h2>
+			<h2>Ackee ${ interval } report</h2>
 			<p>You've had ${ total } visitors in total 🎉! Each visitor stayed on you website for an average of ${ average } seconds. See below for a more detailed report of each domain:</p>
 
 		`
@@ -40,7 +40,7 @@ class Email {
 		const footer = `
 			<br>
 			<p>View all current statistics on <a href="${ endpoint }">${ endpoint }</a></p>
-			<p>This report was generated at ${ new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') } for: ${ names } and sent to ${ report.to }</p>
+			<p>This report was generated at ${ new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') } for: ${ names } and sent to ${ to }</p>
 		`
 
 		const html = `
@@ -73,21 +73,19 @@ class Email {
 	}
 }
 
-const report = async function(domains, report) {
+const report = async function(domains, to, interval) {
 	return new Promise((resolve) => {
 		const config = loadConfig()
 
-		const { host, port, username, password, from } = config.get('email').value()
+		const { host, port, username, password, from } = config.get('email')
 
 		const email = new Email(host, port, username, password)
-		const html = email.build(domains, config.get('ackee').get('server').value(), report)
+		const html = email.build(domains, config.get('ackee').server, interval, to)
 
-		const subject = `Ackee ${ report.interval } report for ${ domains.map((domain) => domain.title).join(', ') }`
-		const to = report.to
+		const subject = `Ackee ${ interval } report for ${ domains.map((domain) => domain.title).join(', ') }`
 
 		email.send(from, to, subject, html).then((info) => {
-			console.log(info)
-			resolve()
+			resolve(info)
 		})
 	})
 }
