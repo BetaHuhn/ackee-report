@@ -13,53 +13,54 @@ class Runner {
 	}
 
 	async report() {
-		const { service, to, ids } = this.options
+		const { domain, id, service, to } = this.args
+		const config = this.config
 
-		if (service === 'email') {
-			const config = this.config
+		const spinner = ora(`Getting Ackee token from server...`).start()
 
-			const domainArg = this.args
-			const spinner = ora(`Starting ackee-report...`).start()
+		try {
+			const ackee = new Ackee(config.ackee.server, config.ackee.username, config.ackee.password)
+			await ackee.login()
 
-			try {
+			spinner.text = 'Login successfull'
 
-				spinner.text = 'Logging in to Ackee server...'
-				const ackee = new Ackee(config.ackee.server, config.ackee.username, config.ackee.password)
-				await ackee.login()
+			let domains = id
+			if (domain !== undefined) {
+				spinner.text = 'Getting domains by title...'
 
-				spinner.text = 'Login successfull'
+				domains = await ackee.domains()
 
-				let domains = ids
-				if (domains === undefined) {
-					if (domainArg === undefined) {
-						return console.error('error: no domains specified')
-					}
-
-					domains = await ackee.domains()
-					domains = domains.filter((domain) => {
-						return domainArg.includes(domain.title)
-					})
-				}
-
-				const getData = async () => {
-					return Promise.all(domains.map((id) => ackee.domain(id)))
-				}
-
-				const data = await getData()
-
-				await emailReport(data, to, 'monthly')
-
-				spinner.succeed(` Report sent to: ${ to }`)
-
-			} catch (err) {
-				console.log(err)
+				domains = domains.filter((aDomain) => domain.includes(aDomain.title))
+				domains = domains.map((aDomain) => aDomain.id)
 			}
+
+			if (domains.length < 1) {
+				return spinner.fail(' error: no domains found')
+			}
+
+			const getData = async () => Promise.all(domains.map((id) => ackee.domain(id)))
+
+			spinner.text = 'Getting domain data...'
+			const data = await getData()
+
+			if (service === 'email') {
+				if (!to) return spinner.fail(' error: no recipient specified with --to')
+
+				spinner.text = 'Generating report...'
+				await emailReport(data, to)
+
+				return spinner.succeed(` Report sent to: ${ to }`)
+			}
+
+			return spinner.fail(' error: service not found specified')
+
+		} catch (err) {
+			console.log(err)
 		}
 	}
 
 	async domains() {
 		const config = this.config
-
 		const args = this.args
 
 		const spinner = ora(`Starting ackee-report...`).start()
@@ -75,16 +76,16 @@ class Runner {
 			let domains = await ackee.domains()
 
 			if (args.length > 0) {
-				domains = domains.filter((domain) => {
-					return args.includes(domain.title)
-				})
+				domains = domains.filter((domain) => args.includes(domain.title))
+			}
+
+			if (domains.length < 1) {
+				return spinner.fail(' error: no domains found')
 			}
 
 			spinner.stop()
 
-			domains.forEach((domain) => {
-				console.log(`${ domain.title }: ${ domain.id }`)
-			})
+			domains.forEach((domain) => console.log(`${ domain.title }: ${ domain.id }`))
 
 		} catch (err) {
 			console.log(err)
