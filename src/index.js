@@ -8,7 +8,7 @@ program
 	.version(packageJson.version, '-v, --version')
 
 program
-	.command('send')
+	.command('generate')
 	.alias('report')
 	.description('generate report and send via specified service')
 	.option('-s, --service <name>', 'service to use', 'email')
@@ -24,7 +24,7 @@ program
 program
 	.command('domains [titles...]')
 	.alias('domain')
-	.description('list all domains')
+	.description('get domain id by title')
 	.action((args, program) => {
 		const runner = new Runner(args, program)
 		runner.domains()
