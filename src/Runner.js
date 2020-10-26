@@ -30,7 +30,10 @@ class Runner {
 
 				domains = await ackee.domains()
 
-				domains = domains.filter((aDomain) => domain.includes(aDomain.title))
+				if (domain[0] !== 'all') {
+					domains = domains.filter((aDomain) => domain.includes(aDomain.title))
+				}
+
 				domains = domains.map((aDomain) => aDomain.id)
 			}
 
