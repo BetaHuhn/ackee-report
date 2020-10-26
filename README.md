@@ -4,7 +4,7 @@
 
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/BetaHuhn/ackee-report/blob/master/LICENSE) ![David](https://img.shields.io/david/betahuhn/ackee-report) [![npm](https://img.shields.io/npm/v/ackee-report)](https://www.npmjs.com/package/ackee-report)
 
-Generate performance reports of websites using the self-hosted analytics tool Ackee.
+CLI tool to generate performance reports of websites using the self-hosted analytics tool Ackee.
 
 </div>
 
@@ -129,9 +129,9 @@ Issues and PRs are very welcome!
 
 Run `yarn lint` or `npm run lint` to use eslint.
 
-Please check out the [contributing guide](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md).
+Please check out the [contributing guide](CONTRIBUTING.md) before you start.
 
-This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). To see differences with previous versions refer to [CHANGELOG](./CHANGELOG.md).
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). To see differences with previous versions refer to the [CHANGELOG](CHANGELOG.md).
 
 ## ❔ About
 

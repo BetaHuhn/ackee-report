@@ -1,7 +1,7 @@
 {
 	"name": "ackee-report",
-	"version": "0.2.0",
-	"description": "",
+	"version": "1.0.0",
+	"description": "CLI tool to generate performance reports of websites using the self-hosted analytics tool Ackee.",
 	"bin": "./src/index.js",
 	"scripts": {
 		"lint": "eslint ./src/",
