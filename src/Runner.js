@@ -49,7 +49,7 @@ class Runner {
 				spinner.text = 'Generating report...'
 				await emailReport(data, to)
 
-				return spinner.succeed(` Report sent to: ${ to }`)
+				return spinner.succeed(` Report sent to: ${ to.join(', ') }`)
 			}
 
 			return spinner.fail(' error: service not found specified')
