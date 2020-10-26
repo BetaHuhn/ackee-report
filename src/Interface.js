@@ -102,21 +102,39 @@ class Ackee {
 						id
 						title
 						facts {
-						averageViews
-						averageDuration
-						viewsMonth
+							averageViews
+							averageDuration
+							viewsMonth
 						}
 						statistics {
-						pages(sorting: TOP, limit:5) {
-							id
-							count
-							created
-						}
-						referrers(sorting: TOP, limit:5) {
-							id
-							count
-							created
-						}
+							pages(sorting: TOP, limit:5) {
+								id
+								count
+							}
+							referrers(sorting: TOP, limit:5) {
+								id
+								count
+							}
+							languages(sorting: TOP, limit:5) {
+								id
+								count
+							}
+							browsers(sorting: TOP, type: WITH_VERSION, limit:5) {
+								id
+								count
+							}
+							devices(sorting: TOP, type: WITH_MODEL, limit:5) {
+								id
+								count
+							}
+							sizes(sorting: TOP, type: SCREEN_RESOLUTION, limit:5) {
+								id
+								count
+							}
+							systems(sorting: TOP, type: NO_VERSION, limit:5) {
+								id
+								count
+							}
 						}
 					}
 				}
