@@ -22,6 +22,8 @@ Install [ackee-report](https://github.com/BetaHuhn/ackee-report) globally via np
 npm install ackee-report -g
 ```
 
+After that `ackee-report` is ready to be used 🎉
+
 ## ⚙️ Configuration
 
 On the first run [ackee-report](https://github.com/BetaHuhn/ackee-report) will ask you to input a few values:
@@ -84,16 +86,15 @@ If you use SendGrid to send emails, use these values:
 ## 📚 Usage
 
 ```shell
-Usage: ackee-report generate [options]
+Usage: ackee-report email [options]
 
-Generates report and sends it via specified service
+Generate report and send it via email
 
 Options:
   -d, --domain <titles...>  specify domains by title
   -i, --id <ids...>         specify domains by id
-  -t, --to <recipient...>   to whom the report should be sent (when using email)
-  -o, --output <file>       path to output file (when using json)
-  -s, --service <name>      service to use (default: "email")
+  -t, --to <recipient...>   to whom the report should be sent
+  -s, --style <name>        email style to use (default: "ackee")
   -h, --help                display help for command
 ```
 
@@ -104,7 +105,7 @@ If you want to send the report periodically, you have to setup a cron job which 
 ### Generate a report for one domain and send it via email
 
 ```shell
-ackee-report generate -d example.com -t hello@example.com
+ackee-report email -d example.com -t hello@example.com
 ```
 
 This will generate a report for the domain `example.com` and send it via email to `hello@example.com`.
@@ -112,7 +113,7 @@ This will generate a report for the domain `example.com` and send it via email t
 ### Multiple domains and recipients
 
 ```shell
-ackee-report generate -d example.com example2.com -t hello@example.com hey@example2.com
+ackee-report email -d example.com example2.com -t hello@example.com hey@example2.com
 ```
 
 ### Send the report periodically (cron)
@@ -120,7 +121,7 @@ ackee-report generate -d example.com example2.com -t hello@example.com hey@examp
 To send a report periodically, for example every month setup a cron job like this:
 
 ```shell
-0 0 1 * * ackee-report generate -d example.com -t hello@example.com >> /tmp/ackee-report.log 2>&1
+0 0 1 * * ackee-report email -d example.com -t hello@example.com >> /tmp/ackee-report.log 2>&1
 ```
 
 If you are not familiar with cron, [here's](https://ostechnix.com/a-beginners-guide-to-cron-jobs/) a tutorial on how to get started.
@@ -134,15 +135,19 @@ To send multiple reports to different people, add them all as seperate cron jobs
 You can also save the report in a JSON file instead of sending it via email:
 
 ```shell
-ackee-report generate -s json -d example.com -o report.json
+ackee-report json -d example.com -o output.json
 ```
+
+## 🖼️ Screenshot
+
+![preview](https://cdn.mxis.ch/assets/ackee-report/multiple.png)
 
 ## 📝 To do
 
 Here is what's currently planned for [ackee-report](https://github.com/BetaHuhn/ackee-report):
 
-- better design/structure of email report
 - more customization of data included in report
+- display data with charts
 - change config file via cli
 - add more services (e.g. Telegram)
 
@@ -158,7 +163,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## ❔ About
 
-This library is an extension to the awesome privacy focused analytics tool [Ackee](https://github.com/electerious/ackee). 
+This library is an extension to the awesome privacy focused analytics tool [Ackee](https://github.com/electerious/ackee).
 
 [Ackee](https://github.com/electerious/ackee) was developed by [@electerious](https://github.com/electerious), if you want to support him and the development of Ackee visit [the Donate section](https://github.com/electerious/ackee#donate) on the Ackee repository.
 
