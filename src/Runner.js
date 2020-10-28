@@ -12,8 +12,8 @@ class Runner {
 		this.args = args || []
 	}
 
-	async report() {
-		const { domain, id, service, to, output } = this.args
+	async email() {
+		const { domain, id, to } = this.args
 		const config = this.config
 
 		const spinner = ora(`Getting Ackee token from server...`).start()
@@ -44,23 +44,56 @@ class Runner {
 			spinner.text = 'Getting data...'
 			const data = await ackee.get(domains)
 
-			if (service === 'email') {
-				if (!to) return spinner.fail(' error: no recipient specified with --to')
+			if (!to) return spinner.fail(' error: no recipient specified with --to')
 
-				spinner.text = 'Generating email...'
-				await Report.email(data, to)
+			spinner.text = 'Generating email...'
+			await Report.email(data, to)
 
-				return spinner.succeed(` Report sent to: ${ to.join(', ') }`)
-			} else if (service === 'json') {
-				if (!output) return spinner.fail(' error: no output path specified with --output')
+			return spinner.succeed(` Report sent to: ${ to.join(', ') }`)
 
-				spinner.text = 'Generating json...'
-				await Report.json(data, output)
+		} catch (err) {
+			console.log(err)
+		}
+	}
 
-				return spinner.succeed(` Report saved to ${ output }`)
+	async json() {
+		const { domain, id, output } = this.args
+		const config = this.config
+
+		const spinner = ora(`Getting Ackee token from server...`).start()
+
+		try {
+			const ackee = new Ackee(config.ackee.server, config.ackee.username, config.ackee.password)
+			await ackee.login()
+
+			spinner.text = 'Login successfull'
+
+			let domains = id
+			if (domain !== undefined) {
+				spinner.text = 'Getting domains by title...'
+
+				domains = await ackee.getDomains()
+
+				if (domain[0] !== 'all') {
+					domains = domains.filter((aDomain) => domain.includes(aDomain.title))
+				}
+
+				domains = domains.map((aDomain) => aDomain.id)
 			}
 
-			return spinner.fail(' error: service not found specified')
+			if (domains.length < 1) {
+				return spinner.fail(' error: no domains found')
+			}
+
+			spinner.text = 'Getting data...'
+			const data = await ackee.get(domains)
+
+			if (!output) return spinner.fail(' error: no output path specified with --output')
+
+			spinner.text = 'Generating json...'
+			await Report.json(data, output)
+
+			return spinner.succeed(` Report saved to ${ output }`)
 
 		} catch (err) {
 			console.log(err)

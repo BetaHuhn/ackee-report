@@ -8,17 +8,26 @@ program
 	.version(packageJson.version, '-v, --version')
 
 program
-	.command('generate')
-	.alias('report')
-	.description('Generates report and sends it via specified service')
+	.command('email')
+	.description('Generate report and send it via email')
 	.option('-d, --domain <titles...>', 'specify domains by title')
 	.option('-i, --id <ids...>', 'specify domains by id')
-	.option('-t, --to <recipient...>', 'to whom the report should be sent (when using email)')
-	.option('-o, --output <file>', 'path to output file (when using email)')
-	.option('-s, --service <name>', 'service to use', 'email')
+	.option('-t, --to <recipient...>', 'to whom the report should be sent')
+	.option('-s, --style <name>', 'email style to use', 'basic')
 	.action((args, program) => {
 		const runner = new Runner(args, program)
-		runner.report()
+		runner.email()
+	})
+
+program
+	.command('json')
+	.description('Query API for data and output it to JSON file')
+	.option('-d, --domain <titles...>', 'specify domains by title')
+	.option('-i, --id <ids...>', 'specify domains by id')
+	.option('-o, --output <file>', 'path to output file', 'report.json')
+	.action((args, program) => {
+		const runner = new Runner(args, program)
+		runner.json()
 	})
 
 program
