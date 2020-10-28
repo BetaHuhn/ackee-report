@@ -4,22 +4,19 @@ const loadConfig = require('./Config')
 const Report = require('./service')
 
 class Runner {
-	constructor(args, options) {
-		const config = loadConfig()
-		this.config = config.all
-		this.path = config.path
-		this.options = options || {}
+	constructor(args) {
 		this.args = args || []
 	}
 
 	async email() {
 		const { domain, id, to } = this.args
-		const config = this.config
+
+		if (!id && !domain) return ora(' error: no domain specified').fail()
 
 		const spinner = ora(`Getting Ackee token from server...`).start()
 
 		try {
-			const ackee = new Ackee(config.ackee.server, config.ackee.username, config.ackee.password)
+			const ackee = new Ackee()
 			await ackee.login()
 
 			spinner.text = 'Login successfull'
@@ -50,20 +47,21 @@ class Runner {
 			await Report.email(data, to)
 
 			return spinner.succeed(` Report sent to: ${ to.join(', ') }`)
-
 		} catch (err) {
+			spinner.fail(' error: see below for more details')
 			console.log(err)
 		}
 	}
 
 	async json() {
 		const { domain, id, output } = this.args
-		const config = this.config
+
+		if (!id && !domain) return ora(' error: no domain specified').fail()
 
 		const spinner = ora(`Getting Ackee token from server...`).start()
 
 		try {
-			const ackee = new Ackee(config.ackee.server, config.ackee.username, config.ackee.password)
+			const ackee = new Ackee()
 			await ackee.login()
 
 			spinner.text = 'Login successfull'
@@ -94,22 +92,20 @@ class Runner {
 			await Report.json(data, output)
 
 			return spinner.succeed(` Report saved to ${ output }`)
-
 		} catch (err) {
+			spinner.fail(' error: see below for more details')
 			console.log(err)
 		}
 	}
 
 	async domains() {
-		const config = this.config
 		const args = this.args
-
 		const spinner = ora(`Starting ackee-report...`).start()
 
 		try {
 
 			spinner.text = 'Logging in to Ackee server...'
-			const ackee = new Ackee(config.ackee.server, config.ackee.username, config.ackee.password)
+			const ackee = new Ackee()
 			await ackee.login()
 
 			spinner.text = 'Login successfull, getting domains...'
@@ -125,17 +121,17 @@ class Runner {
 			}
 
 			spinner.stop()
-
 			domains.forEach((domain) => console.log(`${ domain.title }: ${ domain.id }`))
-
 		} catch (err) {
+			spinner.fail(' error: see below for more details')
 			console.log(err)
 		}
 	}
 
 	outputConfig() {
-		console.log(`Config stored at: ${ this.path }`)
-		console.log(this.config)
+		const config = loadConfig()
+		console.log(`Config stored at: ${ config.path }`)
+		console.log(config.all)
 	}
 }
 

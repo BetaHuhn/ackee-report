@@ -1,11 +1,15 @@
 const axios = require('axios')
+const loadConfig = require('./Config')
 
 class Ackee {
-	constructor(server, username, password) {
-		this.username = username
-		this.password = password
+	constructor() {
+		const config = loadConfig()
+		this.username = config.get('ackee.username')
+		this.password = config.get('ackee.password')
 
-		this.axios = axios.create({ baseURL: endpoint(server) })
+		const endpoint = this._endpoint(config.get('ackee.server'))
+
+		this.axios = axios.create({ baseURL: endpoint })
 
 		this.axios.interceptors.response.use((response) => {
 			if (response.data.errors !== undefined) {
@@ -94,6 +98,49 @@ class Ackee {
 		}
 	}
 
+	async get(ids) {
+		const getData = async () => Promise.all(ids.map((id) => this._getDomainData(id)))
+		const data = await getData()
+
+		const durationAvg = () => {
+			const durations = data.filter((domain) => domain.facts.averageDuration > 0)
+			const avg = data.reduce((n, { facts }) => n + facts.averageDuration, 0) / durations.length
+			return Math.round(avg / 1000)
+		}
+
+		const names = data.map((domain) => domain.title).join(', ')
+		const namesShort = (data.length > 2 ? data.slice(0, 2) : data).map((domain) => domain.title).join(', ') + ` and ${ data.length - 2 } more`
+
+		const total = data.reduce((n, { facts }) => n + facts.viewsMonth, 0)
+
+		const domains = data.map((domain) => {
+			return {
+				id: domain.id,
+				title: domain.title,
+				viewsAvgDay: domain.facts.averageViews,
+				viewsMonth: domain.facts.viewsMonth,
+				durationAvg: Math.round(domain.facts.averageDuration / 1000),
+				pages: domain.statistics.pages,
+				referrers: domain.statistics.referrers,
+				languages: domain.statistics.languages,
+				browsers: domain.statistics.browsers,
+				devices: domain.statistics.devices,
+				sizes: domain.statistics.sizes,
+				systems: domain.statistics.systems
+			}
+		})
+
+		const result = {
+			views: total,
+			durationAvg: durationAvg(),
+			names,
+			namesShort,
+			domains
+		}
+
+		return result
+	}
+
 	async _getDomainData(id) {
 		try {
 			const query = `
@@ -161,54 +208,11 @@ class Ackee {
 		}
 	}
 
-	async get(ids) {
-		const getData = async () => Promise.all(ids.map((id) => this._getDomainData(id)))
-		const data = await getData()
-
-		const durationAvg = () => {
-			const durations = data.filter((domain) => domain.facts.averageDuration > 0)
-			const avg = data.reduce((n, { facts }) => n + facts.averageDuration, 0) / durations.length
-			return Math.round(avg / 1000)
-		}
-
-		const names = data.map((domain) => domain.title).join(', ')
-		const namesShort = (data.length > 2 ? data.slice(0, 2) : data).map((domain) => domain.title).join(', ') + ` and ${ data.length - 2 } more`
-
-		const total = data.reduce((n, { facts }) => n + facts.viewsMonth, 0)
-
-		const domains = data.map((domain) => {
-			return {
-				id: domain.id,
-				title: domain.title,
-				viewsAvgDay: domain.facts.averageViews,
-				viewsMonth: domain.facts.viewsMonth,
-				durationAvg: Math.round(domain.facts.averageDuration / 1000),
-				pages: domain.statistics.pages,
-				referrers: domain.statistics.referrers,
-				languages: domain.statistics.languages,
-				browsers: domain.statistics.browsers,
-				devices: domain.statistics.devices,
-				sizes: domain.statistics.sizes,
-				systems: domain.statistics.systems
-			}
-		})
-
-		const result = {
-			views: total,
-			durationAvg: durationAvg(),
-			names,
-			namesShort,
-			domains
-		}
-
-		return result
+	_endpoint(server) {
+		const hasTrailingSlash = server.substr(-1) === '/'
+		return server + (hasTrailingSlash === true ? '' : '/')
 	}
 
-}
-
-const endpoint = function(server) {
-	const hasTrailingSlash = server.substr(-1) === '/'
-	return server + (hasTrailingSlash === true ? '' : '/')
 }
 
 module.exports = Ackee
