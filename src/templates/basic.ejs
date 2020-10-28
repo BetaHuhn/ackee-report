@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Ackee report for <%=namesShort%></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    <h2>Ackee report for <%=namesShort%></h2>
+    <p>You've had <%=total%> visitors in total 🎉! Each visitor stayed on you website for an average of <%=durationAvg%> seconds. See below for a more detailed report of each domain:</p>
+    <% domains.forEach(function (domain) { %>     
+        <h3><%= domain.title %></h3>
+        <p>Average views per day: <%= domain.viewsAvgDay %></p>
+        <p>Average duration: <%= domain.durationAvg %> seconds</p>
+        <p>Views this month: <%= domain.viewsMonth %></p>
+        <%if (domain.pages.length > 0) { %>
+            <p>Top pages:</p>
+            <ul>
+            <% domain.pages.forEach(function (page) { %>
+                <li><%= page.id %> - <%= page.count %> visits</li>
+            <% }) %>
+            </ul>
+        <% } %>
+        <%if (domain.referrers.length > 0) { %>
+            <p>Top referrers:</p>
+            <ul>
+                <% domain.referrers.forEach(function (referrer) { %>
+                    <li><%= referrer.id %> - <%= referrer.count %> visits</li>
+                <% }) %>
+            </ul>
+        <% } %>
+        <%if (domain.languages.length > 0) { %>
+            <p>Top languages:</p>
+            <ul>
+                <% domain.languages.forEach(function (language) { %>
+                    <li><%= language.id %> - <%= language.count %> times</li>
+                <% }) %>
+            </ul>
+        <% } %>
+        <%if (domain.devices.length > 0) { %>
+            <p>Top devices:</p>
+            <ul>
+                <% domain.devices.forEach(function (device) { %>
+                    <li><%= device.id %> - <%= device.count %> times</li>
+                <% }) %>
+            </ul>
+        <% } %>
+        <%if (domain.browsers.length > 0) { %>
+            <p>Top browsers:</p>
+            <ul>
+                <% domain.browsers.forEach(function (browser) { %>
+                    <li><%= browser.id %> - <%= browser.count %> times</li>
+                <% }) %>
+            </ul>
+        <% } %>
+        <%if (domain.sizes.length > 0) { %>
+            <p>Top sizes:</p>
+            <ul>
+                <% domain.sizes.forEach(function (size) { %>
+                    <li><%= size.id %> - <%= size.count %> times</li>
+                <% }) %>
+            </ul>
+        <% } %>
+        <%if (domain.systems.length > 0) { %>
+            <p>Top systems:</p>
+            <ul>
+                <% domain.systems.forEach(function (system) { %>
+                    <li><%= system.id %> - <%= system.count %> times</li>
+                <% }) %>
+            </ul>
+        <% } %>
+    <% }) %>
+    <br>
+    <p>View all current statistics on <a href="<%=endpoint%>"><%=endpoint%></a></p>
+    <p>This report was generated at <%=generatedAt%> for <%=names%> and sent to <%=to%></p>
+</body>
+</html>

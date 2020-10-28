@@ -18,10 +18,10 @@ class Email {
 		this.transporter = transporter
 	}
 
-	async html(data, endpoint, to) {
+	async html(data, endpoint, to, style) {
 		const generatedAt = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
 
-		const html = await ejs.renderFile(path.join(__dirname, '../templates/ackee.ejs'), { domains: data.domains, total: data.views, durationAvg: data.durationAvg, names: data.names, namesShort: data.namesShort, endpoint, to, generatedAt })
+		const html = await ejs.renderFile(path.join(__dirname, `../templates/${ style }.ejs`), { domains: data.domains, total: data.views, durationAvg: data.durationAvg, names: data.names, namesShort: data.namesShort, endpoint, to, generatedAt })
 
 		return html
 	}
@@ -46,7 +46,7 @@ class Email {
 	}
 }
 
-const report = async function(data, to) {
+const report = async function(data, to, style) {
 	// eslint-disable-next-line no-async-promise-executor
 	return new Promise(async (resolve) => {
 		const config = loadConfig()
@@ -54,7 +54,7 @@ const report = async function(data, to) {
 		const { host, port, username, password, from } = config.get('email')
 
 		const email = new Email(host, port, username, password)
-		const html = await email.html(data, config.get('ackee').server, to)
+		const html = await email.html(data, config.get('ackee').server, to, style)
 
 		const subject = `Ackee report for ${ data.namesShort }`
 

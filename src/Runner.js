@@ -9,7 +9,7 @@ class Runner {
 	}
 
 	async email() {
-		const { domain, id, to } = this.args
+		const { domain, id, to, style } = this.args
 
 		if (!id && !domain) return ora(' error: no domain specified').fail()
 
@@ -43,8 +43,8 @@ class Runner {
 
 			if (!to) return spinner.fail(' error: no recipient specified with --to')
 
-			spinner.text = 'Generating email...'
-			await Report.email(data, to)
+			spinner.text = `Generating email with ${ style } style...`
+			await Report.email(data, to, style)
 
 			return spinner.succeed(` Report sent to: ${ to.join(', ') }`)
 		} catch (err) {
