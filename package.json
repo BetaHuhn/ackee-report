@@ -1,6 +1,6 @@
 {
 	"name": "ackee-report",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "CLI tool to generate performance reports of websites using the self-hosted analytics tool Ackee.",
 	"bin": "./src/index.js",
 	"scripts": {
@@ -14,9 +14,15 @@
 		"url": "https://github.com/BetaHuhn/ackee-report/issues"
 	},
 	"homepage": "https://github.com/BetaHuhn/ackee-report#readme",
-	"keywords": [],
 	"author": "Maximilian Schiller <hello@mxis.ch>",
 	"license": "MIT",
+	"keywords": [
+		"ackee",
+		"analytics",
+		"website-analytics",
+		"email-report",
+		"cli"
+	],
 	"dependencies": {
 		"axios": "^0.21.0",
 		"commander": "^6.2.0",
