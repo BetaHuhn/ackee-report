@@ -119,6 +119,7 @@ class Ackee {
 				title: domain.title,
 				viewsAvgDay: domain.facts.averageViews,
 				viewsMonth: domain.facts.viewsMonth,
+				viewsYear: domain.facts.viewsYear,
 				durationAvg: Math.round(domain.facts.averageDuration / 1000),
 				pages: domain.statistics.pages,
 				referrers: domain.statistics.referrers,
@@ -152,6 +153,7 @@ class Ackee {
 							averageViews
 							averageDuration
 							viewsMonth
+							viewsYear
 						}
 						statistics {
 							pages(sorting: TOP, limit:5) {
