@@ -14,9 +14,9 @@ CLI tool to generate performance reports of websites using the self-hosted analy
 
 ## 🚀 Get started
 
-Install [ackee-report](https://github.com/BetaHuhn/ackee-report) via npm:
+Install [ackee-report](https://github.com/BetaHuhn/ackee-report) globally via npm:
 ```shell
-npm install ackee-report
+npm install ackee-report -g
 ```
 
 ## ⚙️ Configuration
