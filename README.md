@@ -6,6 +6,9 @@
 
 CLI tool to generate performance reports of websites using the self-hosted analytics tool Ackee.
 
+![preview](https://cdn.mxis.ch/assets/ackee-report/mockupSmall.png)
+
+
 </div>
 
 ## 👋 Introduction
