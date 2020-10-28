@@ -1,6 +1,6 @@
 {
 	"name": "ackee-report",
-	"version": "0.3.1",
+	"version": "0.4.0",
 	"description": "CLI tool to generate performance reports of websites using the self-hosted analytics tool Ackee.",
 	"bin": "./src/index.js",
 	"scripts": {
