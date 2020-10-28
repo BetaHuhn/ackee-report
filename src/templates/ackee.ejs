@@ -37,12 +37,6 @@
                 border-radius: 0 !important;
                 border-right-width: 0 !important;
             }
-            table[class=body] .btn table {
-                width: 100% !important;
-            }
-            table[class=body] .btn a {
-                width: 100% !important;
-            }
             table[class=body] .img-responsive {
                 height: auto !important;
                 max-width: 100% !important;
@@ -63,28 +57,64 @@
                 line-height: 100%;
             }
             .apple-link a {
-                color: #73fac8;
+                color: #fff;
                 font-family: inherit !important;
                 font-size: inherit !important;
                 font-weight: inherit !important;
                 line-height: inherit !important;
                 text-decoration: none !important;
             }
-            #outlookLink {
+            a {
                 text-decoration: none;
-                color: #8de0d0 !important
+                color: #fff;
             }
-            .mail-detail-content a[href] {
+            a[href] {
                 text-decoration: none;
-                color: #8de0d0 !important
+                color: #fff;
             }
-            #MessageViewBody a {
-                color: #8de0d0;
+            u+#body a {
+                color: #fff;
                 text-decoration: none;
                 font-size: inherit;
                 font-family: inherit;
                 font-weight: inherit;
                 line-height: inherit;
+            }
+            #outlookLink {
+                text-decoration: none;
+                color: #fff !important
+            }
+            .mail-detail-content a[href] {
+                text-decoration: none;
+                color: #fff !important
+            }
+            #MessageViewBody a {
+                color: #fff;
+                text-decoration: none;
+                font-size: inherit;
+                font-family: inherit;
+                font-weight: inherit;
+                line-height: inherit;
+            }
+            .nolink {
+                text-decoration: none;
+                color: #fff !important
+            }
+            .nolink a {
+                text-decoration: none;
+                color: #fff !important
+            }
+            .link {
+                text-decoration: none;
+                color: #73fac8;
+            }
+            .link a {
+                text-decoration: none;
+                color: #73fac8 !important
+            }
+            .link a[href] {
+                text-decoration: none;
+                color: #73fac8 !important
             }
         }
     </style>
@@ -112,10 +142,10 @@
                     </tr>
                 </tbody>
             </table>
-            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px; text-align: center; color: #fff;">Here is your monthly report for
-                <%=namesShort%>
+            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px; text-align: center; color: #fff !important;">Here is your monthly report for
+                <span class="nolink" style="color:#fff !important"><%=namesShort%></span>
             </p>
-            <td class="container" style="font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; max-width: 1000px; padding: 10px; width: 90%; margin: 0 auto;" width="1000" valign="top">
+            <td class="container" style="font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; max-width: 1000px; padding: 10px; width: 95%; margin: 0 auto;" width="1000" valign="top">
                 <div class="content" style="box-sizing: border-box; display: block; margin: 0 auto; max-width: 1000px; padding: 10px;">
                     <table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 5px; width: 100%;" width="100%">
                         <tr>
@@ -125,7 +155,7 @@
                                         <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn" style="background: #333838; border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; width: 100%; border-radius: 6px;" width="100%">
                                                 <tbody>
-                                                    <h2>Overview</h2>
+                                                    <h2 style="color:#fff !important">Overview</h2>
                                                     <tr>
                                                         <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px; padding-top: 15px;" valign="top">
                                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
@@ -159,7 +189,7 @@
                                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn" style="background: #333838; border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; width: 100%; border-radius: 6px;" width="100%">
                                                     <tbody>
                                                         <h2>
-                                                            <%= domain.title %>
+                                                            <span class="nolink" style="color:#fff !important"><%= domain.title %></span>
                                                         </h2>
                                                         <tr>
                                                             <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-top: 15px;" valign="top">
@@ -195,7 +225,7 @@
                                                                     <ul>
                                                                         <% domain.pages.forEach(function (page) { %>
                                                                             <li>
-                                                                                <span style="color:  #8de0d0"><%= page.id %></span> -
+                                                                                <span class="link" style="color:  #73fac8 !important"><%= page.id %></span> -
                                                                                 <%= page.count %> visits</li>
                                                                             <% }) %>
                                                                     </ul>
@@ -205,7 +235,7 @@
                                                                         <ul>
                                                                             <% domain.referrers.forEach(function (referrer) { %>
                                                                                 <li>
-                                                                                    <span style="color:  #8de0d0"><%= referrer.id %></span> -
+                                                                                    <span class="link" style="color:  #73fac8 !important"><%= referrer.id %></span> -
                                                                                     <%= referrer.count %> visits</li>
                                                                                 <% }) %>
                                                                         </ul>
@@ -215,7 +245,7 @@
                                                                                 <ul>
                                                                                     <% domain.languages.forEach(function (language) { %>
                                                                                         <li>
-                                                                                            <span style="color:  #8de0d0"><%= language.id %></span> -
+                                                                                            <span style="color:  #73fac8 !important"><%= language.id %></span> -
                                                                                             <%= language.count %> times</li>
                                                                                         <% }) %>
                                                                                 </ul>
@@ -225,7 +255,7 @@
                                                                                         <ul>
                                                                                             <% domain.devices.forEach(function (device) { %>
                                                                                                 <li>
-                                                                                                    <span style="color:  #8de0d0"><%= device.id %></span> -
+                                                                                                    <span style="color: #73fac8 !important"><%= device.id %></span> -
                                                                                                     <%= device.count %> times</li>
                                                                                                 <% }) %>
                                                                                         </ul>
@@ -235,7 +265,7 @@
                                                                                                 <ul>
                                                                                                     <% domain.browsers.forEach(function (browser) { %>
                                                                                                         <li>
-                                                                                                            <span style="color:  #8de0d0"><%= browser.id %></span> -
+                                                                                                            <span style="color:  #73fac8 !important"><%= browser.id %></span> -
                                                                                                             <%= browser.count %> times</li>
                                                                                                         <% }) %>
                                                                                                 </ul>
@@ -245,7 +275,7 @@
                                                                                                         <ul>
                                                                                                             <% domain.sizes.forEach(function (size) { %>
                                                                                                                 <li>
-                                                                                                                    <span style="color:  #8de0d0"><%= size.id %></span> -
+                                                                                                                    <span style="color:  #73fac8 !important"><%= size.id %></span> -
                                                                                                                     <%= size.count %> times</li>
                                                                                                                 <% }) %>
                                                                                                         </ul>
@@ -255,7 +285,7 @@
                                                                                                                 <ul>
                                                                                                                     <% domain.systems.forEach(function (system) { %>
                                                                                                                         <li>
-                                                                                                                            <span style="color:  #8de0d0"><%= system.id %></span> -
+                                                                                                                            <span style="color:  #73fac8 !important"><%= system.id %></span> -
                                                                                                                             <%= system.count %> times</li>
                                                                                                                         <% }) %>
                                                                                                                 </ul>
@@ -276,7 +306,7 @@
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
                             <tr>
                                 <td class="content-block powered-by" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; color: #8d8d95; font-size: 12px; text-align: center;" valign="top" align="center">
-                                    <span class="apple-link" style="color: #8d8d95; font-size: 12px; text-align: center;">View all current statistics on <a href="<%=endpoint%>" style="color:#73fac8; font-size: 12px; text-align: center; text-decoration: none;"><%=endpoint%></a></span>
+                                    <span class="apple-link" style="color: #8d8d95; font-size: 12px; text-align: center;">View all current statistics on <a class="link" href="<%=endpoint%>" style="color:#73fac8; font-size: 12px; text-align: center; text-decoration: none;"><%=endpoint%></a></span>
                                 </td>
                             </tr>
                             <tr>
