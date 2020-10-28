@@ -1,4 +1,6 @@
 <div align="center">
+  
+<img src="https://cdn.mxis.ch/assets/ackee-report/logo.png" title="ackee-report" alt="ackee-report logo" width="128">
 
 # ackee-report
 
