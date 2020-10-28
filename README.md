@@ -19,68 +19,22 @@ Install [ackee-report](https://github.com/BetaHuhn/ackee-report) via npm:
 npm install ackee-report
 ```
 
+## ⚙️ Configuration
+
 On the first run [ackee-report](https://github.com/BetaHuhn/ackee-report) will ask you to input a few values:
 
 - *Ackee server* - The endpoint of your Ackee instance
 - *Ackee username* - Your Ackee username you use to login to the UI
 - *Ackee password* - Your Ackee password you use to login to the UI
-- *SMTP host* - more info [here](#%EF%B8%8F-configuration)
-- *SMTP port* - more info [here](#%EF%B8%8F-configuration)
-- *SMTP username* - more info [here](#%EF%B8%8F-configuration)
-- *SMTP password* - more info [here](#%EF%B8%8F-configuration)
-- *SMTP from* - more info [here](#%EF%B8%8F-configuration)
+- *SMTP host* - the domain of the SMTP server (examples below)
+- *SMTP port* - the port of the SMTP server (examples below)
+- *SMTP username* - the username to use with the SMPT server (examples below)
+- *SMTP password* - tthe password to use with the SMPT server (examples below)
+- *SMTP from* - the from address to use (in most cases your own email address)
 
-The configuration will be stored in your home directory: `~/.config/configstore/ackee-report.json`
+The configuration will be stored in your home directory under `~/.config/configstore/ackee-report.json` and can be changed at any point.
 
-## 📚 Usage
-
-```shell
-Usage: ackee-report generate [options]
-
-Generates report and sends it via specified service
-
-Options:
-  -d, --domain <titles...>  specify domains by title
-  -i, --id <ids...>         specify domains by id
-  -t, --to <recipient...>   to whom the report should be sent (when using email)
-  -o, --output <file>       path to output file (when using json)
-  -s, --service <name>      service to use (default: "email")
-  -h, --help                display help for command
-```
-
-## 🛠️ Examples
-
-Run:
-
-```shell
-ackee-report generate -d example.com -t hello@example.com
-```
-
-to generate a report for the domain `example.com` and send it via email to `hello@example.com`.
-
-To do this every month, create a cron job:
-
-```shell
-0 0 1 * * ackee-report generate -d example.com -t hello@example.com >> /tmp/ackee-report.log 2>&1
-```
-
-You can also specify mulitple domains and recipients:
-
-```shell
-ackee-report generate -d example.com example2.com -t hello@example.com hey@example2.com
-```
-
-To send multiple reports to different people, add them all as seperate cron jobs.
-
-You can also save the report in a JSON file instead of sending it via email:
-
-```shell
-ackee-report generate -s json -d example.com -o report.json
-```
-
-## ⚙️ Configuration
-
-## Email
+### Email setup
 
 If you want to send your report via email, you have to specify your email providers SMTP server and credentials, aswell as the from option:
 
@@ -89,8 +43,6 @@ If you want to send your report via email, you have to specify your email provid
 - *Username* - `username@example.com`
 - *Password* - `password`
 - *From* - `username@example.com` or `Ackee <username@example.com>`
-
-Enter the values on the first run of [ackee-report](https://github.com/BetaHuhn/ackee-report) or change them later in the config file: `~/.config/configstore/ackee-report.json`
 
 Common providers:
 
@@ -126,11 +78,66 @@ If you use SendGrid to send emails, use these values:
 
 </details>
 
+## 📚 Usage
+
+```shell
+Usage: ackee-report generate [options]
+
+Generates report and sends it via specified service
+
+Options:
+  -d, --domain <titles...>  specify domains by title
+  -i, --id <ids...>         specify domains by id
+  -t, --to <recipient...>   to whom the report should be sent (when using email)
+  -o, --output <file>       path to output file (when using json)
+  -s, --service <name>      service to use (default: "email")
+  -h, --help                display help for command
+```
+
+If you want to send the report periodically, you have to setup a cron job which runs the command at a set interval (example below).
+
+## 🛠️ Examples
+
+### Generate a report for one domain and send it via email
+
+```shell
+ackee-report generate -d example.com -t hello@example.com
+```
+
+This will generate a report for the domain `example.com` and send it via email to `hello@example.com`.
+
+### Multiple domains and recipients
+
+```shell
+ackee-report generate -d example.com example2.com -t hello@example.com hey@example2.com
+```
+
+### Send the report periodically (cron)
+
+To send a report periodically, for example every month setup a cron job like this:
+
+```shell
+0 0 1 * * ackee-report generate -d example.com -t hello@example.com >> /tmp/ackee-report.log 2>&1
+```
+
+If you are not familiar with cron, [here's](https://ostechnix.com/a-beginners-guide-to-cron-jobs/) a tutorial on how to get started.
+
+**Note:** You may have to specify the actual path to ackee-report. In that case, replace `ackee-report` in the command above with the output of `which ackee-report`.
+
+To send multiple reports to different people, add them all as seperate cron jobs.
+
+### Output the report to a JSON file
+
+You can also save the report in a JSON file instead of sending it via email:
+
+```shell
+ackee-report generate -s json -d example.com -o report.json
+```
+
 ## 📝 To do
 
 Here is what's currently planned for [ackee-report](https://github.com/BetaHuhn/ackee-report):
 
-- include more data in report
 - better design/structure of email report
 - more customization of data included in report
 - change config file via cli
