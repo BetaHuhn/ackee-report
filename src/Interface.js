@@ -109,9 +109,10 @@ class Ackee {
 		}
 
 		const names = data.map((domain) => domain.title).join(', ')
-		const namesShort = (data.length > 2 ? data.slice(0, 2) : data).map((domain) => domain.title).join(', ') + ` and ${ data.length - 2 } more`
+		const namesShort = (data.length > 2) ? (data.slice(0, 2).map((domain) => domain.title).join(', ') + ` and ${ data.length - 2 } more`) : (data.map((domain) => domain.title).join(', '))
 
 		const total = data.reduce((n, { facts }) => n + facts.viewsMonth, 0)
+		const viewsYear = data.reduce((n, { facts }) => n + facts.viewsYear, 0)
 
 		const domains = data.map((domain) => {
 			return {
@@ -133,6 +134,7 @@ class Ackee {
 
 		const result = {
 			views: total,
+			viewsYear: viewsYear,
 			durationAvg: durationAvg(),
 			names,
 			namesShort,

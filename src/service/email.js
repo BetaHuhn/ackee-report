@@ -21,7 +21,7 @@ class Email {
 	async html(data, endpoint, to, style) {
 		const generatedAt = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
 
-		const html = await ejs.renderFile(path.join(__dirname, `../templates/${ style }.ejs`), { domains: data.domains, total: data.views, durationAvg: data.durationAvg, names: data.names, namesShort: data.namesShort, endpoint, to, generatedAt })
+		const html = await ejs.renderFile(path.join(__dirname, `../templates/${ style }.ejs`), { domains: data.domains, total: data.views, viewsYear: data.viewsYear, durationAvg: data.durationAvg, names: data.names, namesShort: data.namesShort, endpoint, to, generatedAt })
 
 		return html
 	}
