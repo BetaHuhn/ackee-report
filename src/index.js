@@ -6,6 +6,8 @@ const Runner = require('./Runner')
 
 program
 	.version(packageJson.version, '-v, --version')
+	.description('CLI tool to generate performance reports of websites using the self-hosted analytics tool Ackee.')
+	.usage('<command> [options]')
 
 program
 	.command('email')
@@ -46,6 +48,12 @@ program
 		const runner = new Runner(args, program)
 		runner.outputConfig()
 	})
+
+program.on('--help', () => {
+	console.log('')
+	console.log('Example call:')
+	console.log('  $ ackee-report email --domain example.com --to hello@example.com')
+})
 
 program.on('command:*', (operands) => {
 	console.error(`error: unknown command '${ operands[0] }'\n`)
