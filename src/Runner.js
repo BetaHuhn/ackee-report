@@ -48,6 +48,9 @@ class Runner {
 
 			return spinner.succeed(` Report sent to: ${ to.join(', ') }`)
 		} catch (err) {
+			if (err.message) {
+				return spinner.fail(` ${ err.message }`)
+			}
 			spinner.fail(' error: see below for more details')
 			console.log(err)
 		}
@@ -93,6 +96,9 @@ class Runner {
 
 			return spinner.succeed(` Report saved to ${ output }`)
 		} catch (err) {
+			if (err.message) {
+				return spinner.fail(` ${ err.message }`)
+			}
 			spinner.fail(' error: see below for more details')
 			console.log(err)
 		}
@@ -123,6 +129,9 @@ class Runner {
 			spinner.stop()
 			domains.forEach((domain) => console.log(`${ domain.title }: ${ domain.id }`))
 		} catch (err) {
+			if (err.message) {
+				return spinner.fail(` ${ err.message }`)
+			}
 			spinner.fail(' error: see below for more details')
 			console.log(err)
 		}

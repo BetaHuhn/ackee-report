@@ -3,13 +3,13 @@ const loadConfig = require('./Config')
 
 class Ackee {
 	constructor() {
-		const config = loadConfig()
+		const config = loadConfig().get('ackee')
 
-		this.token = config.get('ackee.token')
-		this.username = config.get('ackee.username')
-		this.password = config.get('ackee.password')
+		this.token = config.token
+		this.username = config.username
+		this.password = config.password
 
-		const endpoint = this._endpoint(config.get('ackee.server'))
+		const endpoint = this._endpoint(config.server)
 
 		this.axios = axios.create({ baseURL: endpoint })
 
@@ -18,21 +18,18 @@ class Ackee {
 				const err = new Error()
 				err.name = 'AckeeApiError'
 				err.message = response.data.errors[0].message
-				err.details = response.data.errors
 				throw err
 			}
 
 			return response
 		}, (err) => {
 			if (err && err.response && err.response.data) {
-				console.log(err.response)
 				err.name = 'AckeeApiError'
 				err.message = `${ err.response.data } (${ err.response.statusCode } status code)`
 				throw err
-			} else {
-				console.error(err)
-				throw err
 			}
+
+			throw err
 		})
 	}
 
@@ -72,8 +69,7 @@ class Ackee {
 			this.axios.defaults.headers.common['Authorization'] = `Bearer ${ token }`
 
 		} catch (err) {
-			console.error(err)
-			process.exit(0)
+			throw new Error(err)
 		}
 
 	}
@@ -100,8 +96,7 @@ class Ackee {
 			return domains
 
 		} catch (err) {
-			console.error(err)
-			process.exit(0)
+			throw new Error(err)
 		}
 	}
 
@@ -214,8 +209,7 @@ class Ackee {
 			return domain
 
 		} catch (err) {
-			console.error(err)
-			process.exit(0)
+			throw new Error(err)
 		}
 	}
 
