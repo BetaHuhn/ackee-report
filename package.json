@@ -5,7 +5,7 @@
 	"bin": "./src/index.js",
 	"scripts": {
 		"lint": "eslint ./src/",
-		"template:dev":  "ejs-serve -f ./src/templates/ackee.ejs -d sample-data.json"
+		"template:dev": "ejs-serve -f ./src/templates/ackee.ejs -d sample-data.json"
 	},
 	"repository": {
 		"type": "git",
