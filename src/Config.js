@@ -10,14 +10,21 @@ const loadConfig = function() {
 		config.set('ackee.server', server)
 	}
 
-	if (!config.get('ackee.username')) {
-		const username = prompt('Ackee username: ')
-		config.set('ackee.username', username)
-	}
+	if (!config.get('ackee.token')) {
+		const token = prompt('Ackee token (press enter to skip): ')
+		if (token.length < 1) {
+			if (!config.get('ackee.username')) {
+				const username = prompt('Ackee username: ')
+				config.set('ackee.username', username)
+			}
 
-	if (!config.get('ackee.password')) {
-		const password = prompt('Ackee password: ')
-		config.set('ackee.password', password)
+			if (!config.get('ackee.password')) {
+				const password = prompt('Ackee password: ')
+				config.set('ackee.password', password)
+			}
+		} else {
+			config.set('ackee.token', token)
+		}
 	}
 
 	if (!config.get('email.host')) {

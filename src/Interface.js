@@ -4,6 +4,8 @@ const loadConfig = require('./Config')
 class Ackee {
 	constructor() {
 		const config = loadConfig()
+
+		this.token = config.get('ackee.token')
 		this.username = config.get('ackee.username')
 		this.password = config.get('ackee.password')
 
@@ -35,6 +37,11 @@ class Ackee {
 	}
 
 	async login() {
+		if (this.token) {
+			this.axios.defaults.headers.common['Authorization'] = `Bearer ${ this.token }`
+			return
+		}
+
 		try {
 			const query = `
 				mutation createToken($input: CreateTokenInput!) {
