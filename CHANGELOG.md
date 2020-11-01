@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- include data of last 30 days instead of last 7 days
 - better error handling
 - refactor config validation
 
