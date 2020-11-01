@@ -141,15 +141,17 @@ ackee-report email -d example.com example2.com -t hello@example.com hey@example2
 
 ### Send the report periodically (cron)
 
-To send a report periodically, for example every month setup a cron job like this:
+To send a report periodically, for example every month at the 28th at 23:55 setup a cron job like this:
 
 ```shell
-0 0 1 * * ackee-report email -d example.com -t hello@example.com >> /tmp/ackee-report.log 2>&1
+55 23 28 * * ackee-report email -d example.com -t hello@example.com >> /tmp/ackee-report.log 2>&1
 ```
 
-If you are not familiar with cron, [here's](https://ostechnix.com/a-beginners-guide-to-cron-jobs/) a tutorial on how to get started.
+**Note:** We use the 28th as running on the last day of the month is very complicated with cron and Ackee resets its data on the first day of each month.
 
 **Note:** You may have to specify the actual path to ackee-report. In that case, replace `ackee-report` in the command above with the output of `which ackee-report`.
+
+If you are not familiar with cron, [here's](https://ostechnix.com/a-beginners-guide-to-cron-jobs/) a tutorial on how to get started.
 
 To send multiple reports to different people, add them all as seperate cron jobs.
 
