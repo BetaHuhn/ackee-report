@@ -44,23 +44,23 @@ The configuration will be stored in your home directory under `~/.config/configs
 
 ### Ackee API authentication
 
-ackee-report needs access to your Ackee instance via the API in order to get all the data it needs to generate the report. You can choose any of the two authentication methods below:
+[ackee-report](https://github.com/BetaHuhn/ackee-report) needs access to your Ackee instance via the API in order to get all the data it needs to generate the report. You can choose any of the two authentication methods below:
 
 **Username and password:**
 
-Enter your username and password you use to login to the Ackee UI on the first run of ackee-report or change it in the config file later.
+Enter your username and password you use to login to the Ackee UI on the first run of [ackee-report](https://github.com/BetaHuhn/ackee-report) or change it in the config file later.
 
-ackee-report will then use them to create a temporary access token each time it runs and use it to query the Ackee API.
+[ackee-report](https://github.com/BetaHuhn/ackee-report) will then use them to create a temporary access token each time it runs and use it to query the Ackee API.
 
 **Permanent access token (recommended):**
 
-The recommended way of authenticating ackee-report is with a permanent access token. 
+The recommended way of authenticating [ackee-report](https://github.com/BetaHuhn/ackee-report) is with a permanent access token. 
 
 You will have to create one via the Ackee UI under `Settings`/`Permanent Tokens`, then click on `New permanent token` and give it a name (doesn't matter what).
 
-Copy the `permanent token id` and enter it on the first run of ackee-report or add it to the config file under `ackee.token` later.
+Copy the `permanent token id` and enter it on the first run of [ackee-report](https://github.com/BetaHuhn/ackee-report) or add it to the config file under `ackee.token` later.
 
-The same token will then be used each time ackee-report runs to query the Ackee API.
+The same token will then be used each time [ackee-report](https://github.com/BetaHuhn/ackee-report) runs to query the Ackee API.
 
 ### Email setup
 
