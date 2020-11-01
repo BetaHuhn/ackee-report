@@ -31,9 +31,9 @@ After that `ackee-report` is ready to be used 🎉
 On the first run [ackee-report](https://github.com/BetaHuhn/ackee-report) will ask you to input a few values:
 
 - *ackee server* - the endpoint of your Ackee instance
-- *ackee token* - a permanent Ackee token (can be used instead of username and password, [more info](ackee-api-authentication))
-- *ackee username* - your Ackee username ([more info](ackee-api-authentication))
-- *ackee password* - your Ackee password ([more info](ackee-api-authentication))
+- *ackee token* - a permanent Ackee token (can be used instead of username and password, [more info](#ackee-api-authentication))
+- *ackee username* - your Ackee username ([more info](#ackee-api-authentication))
+- *ackee password* - your Ackee password ([more info](#ackee-api-authentication))
 - *email host* - the domain of the email server ([more info](#email-setup))
 - *email port* - the port of the email server ([more info](#email-setup))
 - *email username* - the username to use with the email server ([more info](#email-setup))
