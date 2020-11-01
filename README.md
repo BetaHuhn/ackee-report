@@ -30,16 +30,37 @@ After that `ackee-report` is ready to be used 🎉
 
 On the first run [ackee-report](https://github.com/BetaHuhn/ackee-report) will ask you to input a few values:
 
-- *Ackee server* - The endpoint of your Ackee instance
-- *Ackee username* - Your Ackee username you use to login to the UI
-- *Ackee password* - Your Ackee password you use to login to the UI
-- *SMTP host* - the domain of the SMTP server (examples below)
-- *SMTP port* - the port of the SMTP server (examples below)
-- *SMTP username* - the username to use with the SMPT server (examples below)
-- *SMTP password* - tthe password to use with the SMPT server (examples below)
-- *SMTP from* - the from address to use (in most cases your own email address)
+- *ackee server* - The endpoint of your Ackee instance
+- *ackee token* - A permanent access token (can be used instead of username and password)
+- *ackee username* - Your Ackee username
+- *ackee password* - Your Ackee password
+- *email host* - the domain of the SMTP server (examples below)
+- *email port* - the port of the SMTP server (examples below)
+- *email username* - the username to use with the SMPT server (examples below)
+- *email password* - tthe password to use with the SMPT server (examples below)
+- *email from* - the from address to use (in most cases your own email address)
 
 The configuration will be stored in your home directory under `~/.config/configstore/ackee-report.json` and can be changed at any point.
+
+### Ackee API authentication
+
+ackee-report needs access to your Ackee instance via the API in order to get all the data it needs to generate the report. You can choose any of the two authentication methods below:
+
+**Username and password:**
+
+Enter your username and password you use to login to the Ackee UI on the first run of ackee-report or change it in the config file later.
+
+ackee-report will then use them to create a temporary access token each time it runs and use it to query the Ackee API.
+
+**Permanent access token:**
+
+The recommended way of authenticating ackee-report is with a permanent access token. 
+
+You will have to create one via the Ackee UI under `Settings`/`Permanent Tokens`, then click on `New permanent token` and give it a name (doesn't matter what).
+
+Copy the `permanent token id` and enter it on the first run of ackee-report or add it to the config file under `ackee.token` later.
+
+The same token will then be used each time ackee-report runs to query the Ackee API.
 
 ### Email setup
 
