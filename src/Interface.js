@@ -160,31 +160,31 @@ class Ackee {
 							viewsYear
 						}
 						statistics {
-							pages(sorting: TOP, limit:5) {
+							pages(sorting: TOP, limit: 5, range: LAST_30_DAYS) {
 								id
 								count
 							}
-							referrers(sorting: TOP, limit:5) {
+							referrers(sorting: TOP, limit: 5, range: LAST_30_DAYS) {
 								id
 								count
 							}
-							languages(sorting: TOP, limit:3) {
+							languages(sorting: TOP, limit: 3, range: LAST_30_DAYS) {
 								id
 								count
 							}
-							browsers(sorting: TOP, type: WITH_VERSION, limit:3) {
+							browsers(sorting: TOP, type: WITH_VERSION, limit: 3, range: LAST_30_DAYS) {
 								id
 								count
 							}
-							devices(sorting: TOP, type: WITH_MODEL, limit:3) {
+							devices(sorting: TOP, type: WITH_MODEL, limit: 3, range: LAST_30_DAYS) {
 								id
 								count
 							}
-							sizes(sorting: TOP, type: SCREEN_RESOLUTION, limit:3) {
+							sizes(sorting: TOP, type: SCREEN_RESOLUTION, limit: 3, range: LAST_30_DAYS) {
 								id
 								count
 							}
-							systems(sorting: TOP, type: NO_VERSION, limit:3) {
+							systems(sorting: TOP, type: NO_VERSION, limit: 3, range: LAST_30_DAYS) {
 								id
 								count
 							}
