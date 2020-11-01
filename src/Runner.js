@@ -1,11 +1,12 @@
 const Ackee = require('./Interface')
 const ora = require('ora')
-const loadConfig = require('./Config')
+const { loadConfig } = require('./Config')
 const Report = require('./service')
 
 class Runner {
 	constructor(args) {
 		this.args = args || []
+		this.config = loadConfig()
 	}
 
 	async email() {
@@ -138,7 +139,7 @@ class Runner {
 	}
 
 	outputConfig() {
-		const config = loadConfig()
+		const config = this.config
 		console.log(`Config stored at: ${ config.path }`)
 		console.log(config.all)
 	}

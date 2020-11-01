@@ -1,9 +1,9 @@
 const axios = require('axios')
-const loadConfig = require('./Config')
+const { Config } = require('./Config')
 
 class Ackee {
 	constructor() {
-		const config = loadConfig().get('ackee')
+		const config = Config.get('ackee')
 
 		this.token = config.token
 		this.username = config.username

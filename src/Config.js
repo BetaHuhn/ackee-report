@@ -1,58 +1,46 @@
 const Configstore = require('configstore')
-const prompt = require('prompt-sync')({ sigint: false })
+const prompt = require('prompt-sync')({ sigint: true })
 const packageJson = require('../package.json')
 
 const config = new Configstore(packageJson.name, {})
 
-const loadConfig = function() {
-	if (!config.get('ackee.server')) {
-		const server = prompt('Ackee server: ')
-		config.set('ackee.server', server)
+const fields = [ 'ackee.server', 'email.host', 'email.port', 'email.username', 'email.password', 'email.from' ]
+
+const verifyField = (field) => {
+	const existing = config.get(field)
+	if (existing) return existing
+
+	const text = field.split('.').join(' ')
+	let value = prompt(`${ text }: `)
+	if (value.length < 1) {
+		value = verifyField(field)
 	}
 
-	if (!config.get('ackee.token')) {
+	config.set(field, value)
+	return value
+}
+
+const loadConfig = function() {
+	if (!(config.get('ackee.token') || (config.get('ackee.username') && config.get('ackee.password')))) {
+
 		const token = prompt('Ackee token (press enter to skip): ')
 		if (token.length < 1) {
-			if (!config.get('ackee.username')) {
-				const username = prompt('Ackee username: ')
-				config.set('ackee.username', username)
-			}
 
-			if (!config.get('ackee.password')) {
-				const password = prompt('Ackee password: ')
-				config.set('ackee.password', password)
-			}
+			verifyField('ackee.username')
+			verifyField('ackee.password')
+
 		} else {
 			config.set('ackee.token', token)
 		}
+
 	}
 
-	if (!config.get('email.host')) {
-		const host = prompt('SMTP host: ')
-		config.set('email.host', host)
-	}
-
-	if (!config.get('email.port')) {
-		const port = prompt('SMTP port: ')
-		config.set('email.port', port)
-	}
-
-	if (!config.get('email.username')) {
-		const username = prompt('SMTP username: ')
-		config.set('email.username', username)
-	}
-
-	if (!config.get('email.password')) {
-		const password = prompt('SMTP password: ')
-		config.set('email.password', password)
-	}
-
-	if (!config.get('email.from')) {
-		const from = prompt('SMTP from field: ')
-		config.set('email.from', from)
-	}
+	fields.forEach((field) => {
+		verifyField(field)
+	})
 
 	return config
 }
 
-module.exports = loadConfig
+module.exports.Config = config
+module.exports.loadConfig = loadConfig
