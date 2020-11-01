@@ -54,7 +54,7 @@ Enter your username and password you use to login to the Ackee UI on the first r
 
 **Permanent access token (recommended):**
 
-The recommended way of authenticating [ackee-report](https://github.com/BetaHuhn/ackee-report) is with a permanent access token. 
+The recommended way of authenticating [ackee-report](https://github.com/BetaHuhn/ackee-report) is with a permanent access token (only available with Ackee [v2.2.0](https://github.com/electerious/Ackee/releases/tag/v2.2.0) or later). 
 
 You will have to create one via the Ackee UI under `Settings`/`Permanent Tokens`, then click on `New permanent token` and give it a name (doesn't matter what).
 
