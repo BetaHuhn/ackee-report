@@ -30,15 +30,15 @@ After that `ackee-report` is ready to be used 🎉
 
 On the first run [ackee-report](https://github.com/BetaHuhn/ackee-report) will ask you to input a few values:
 
-- *ackee server* - The endpoint of your Ackee instance
-- *ackee token* - A permanent access token (can be used instead of username and password)
-- *ackee username* - Your Ackee username
-- *ackee password* - Your Ackee password
-- *email host* - the domain of the SMTP server (examples below)
-- *email port* - the port of the SMTP server (examples below)
-- *email username* - the username to use with the SMPT server (examples below)
-- *email password* - tthe password to use with the SMPT server (examples below)
-- *email from* - the from address to use (in most cases your own email address)
+- *ackee server* - the endpoint of your Ackee instance
+- *ackee token* - a permanent Ackee token (can be used instead of username and password, [more info](ackee-api-authentication))
+- *ackee username* - your Ackee username ([more info](ackee-api-authentication))
+- *ackee password* - your Ackee password ([more info](ackee-api-authentication))
+- *email host* - the domain of the email server ([more info](#email-setup))
+- *email port* - the port of the email server ([more info](#email-setup))
+- *email username* - the username to use with the email server ([more info](#email-setup))
+- *email password* - the password to use with the email server ([more info](#email-setup))
+- *email from* - the from address to use ([more info](#email-setup))
 
 The configuration will be stored in your home directory under `~/.config/configstore/ackee-report.json` and can be changed at any point.
 
@@ -52,7 +52,7 @@ Enter your username and password you use to login to the Ackee UI on the first r
 
 ackee-report will then use them to create a temporary access token each time it runs and use it to query the Ackee API.
 
-**Permanent access token:**
+**Permanent access token (recommended):**
 
 The recommended way of authenticating ackee-report is with a permanent access token. 
 
