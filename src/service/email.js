@@ -23,7 +23,7 @@ class Email {
 			path.join(__dirname, `../templates/${ style }.ejs`),
 			{
 				domains: data.domains,
-				total: data.views,
+				total: data.viewsMonth,
 				viewsYear: data.viewsYear,
 				durationAvg: data.durationAvg,
 				names: data.names,
