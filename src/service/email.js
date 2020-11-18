@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer')
 const ejs = require('ejs')
 const path = require('path')
-const { Config } = require('../Config')
 
 class Email {
 	constructor(host, port, username, password) {
@@ -46,18 +45,18 @@ class Email {
 	}
 }
 
-const report = async function(data, to, style) {
+const report = async function(data, config, param) {
 	// eslint-disable-next-line no-async-promise-executor
 	return new Promise(async (resolve) => {
 
-		const { host, port, username, password, from } = Config.get('email')
+		const { host, port, username, password, from } = config.email
 
 		const email = new Email(host, port, username, password)
-		const html = await email.html(data, Config.get('ackee').server, to, style)
+		const html = await email.html(data, config.ackee.server, param.to, param.style)
 
 		const subject = `Ackee report for ${ data.namesShort }`
 
-		email.send(from, to, subject, html).then((info) => {
+		email.send(from, param.to, subject, html).then((info) => {
 			resolve(info)
 		})
 	})

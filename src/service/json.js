@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const report = async function(data, output) {
+const report = async function(data, config, output) {
 	return new Promise((resolve, reject) => {
 		const result = JSON.stringify(data, null, 2)
 

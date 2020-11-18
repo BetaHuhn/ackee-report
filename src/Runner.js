@@ -45,7 +45,7 @@ class Runner {
 			if (!to) return spinner.fail(' error: no recipient specified with --to')
 
 			spinner.text = `Generating email with ${ style } style...`
-			await Report.email(data, to, style)
+			await Report.email(data, this.config.all, { to, style })
 
 			return spinner.succeed(` Report sent to: ${ to.join(', ') }`)
 		} catch (err) {
@@ -93,7 +93,7 @@ class Runner {
 			if (!output) return spinner.fail(' error: no output path specified with --output')
 
 			spinner.text = 'Generating json...'
-			await Report.json(data, output)
+			await Report.json(data, this.config.all, output)
 
 			return spinner.succeed(` Report saved to ${ output }`)
 		} catch (err) {
@@ -141,7 +141,7 @@ class Runner {
 			if (!output) return spinner.fail(' error: no output path specified with --output')
 
 			spinner.text = 'Generating rss feed...'
-			await Report.json(data, output)
+			await Report.rss(data, this.config.all, output)
 
 			return spinner.succeed(` Report saved to ${ output }`)
 		} catch (err) {
