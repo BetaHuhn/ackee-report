@@ -33,6 +33,18 @@ program
 	})
 
 program
+	.command('rss')
+	.alias('xml')
+	.description('Generate report as a RSS feed')
+	.option('-d, --domain <titles...>', 'specify domains by title')
+	.option('-i, --id <ids...>', 'specify domains by id')
+	.option('-o, --output <file>', 'path to output file', 'report.xml')
+	.action((args, program) => {
+		const runner = new Runner(args, program)
+		runner.rss()
+	})
+
+program
 	.command('domains [titles...]')
 	.alias('domain')
 	.description('get domain id by title')

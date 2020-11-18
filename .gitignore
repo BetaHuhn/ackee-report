@@ -1,3 +1,4 @@
 node_modules/
 src/config.json
 report.json
+report.xml
