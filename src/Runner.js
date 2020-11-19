@@ -124,14 +124,20 @@ class Runner {
 	}
 
 	async rss() {
-		const { domain, id, output } = this.args
+		const { domain, id, output, range, limit } = this.args
 
-		if (!id && !domain) return ora(' error: no domain specified').fail()
+		const spinner = ora()
 
-		const spinner = ora(`Getting Ackee token from server...`).start()
+		if (!id && !domain) return spinner.fail(' error: no domain specified')
+
+		const dataRange = Constants.range[range]
+		if (!dataRange) return spinner.fail(' error: range not supported')
 
 		try {
-			const ackee = new Ackee()
+			const ackee = new Ackee({
+				range: dataRange,
+				limit: limit
+			})
 			await ackee.login()
 
 			spinner.text = 'Login successfull'

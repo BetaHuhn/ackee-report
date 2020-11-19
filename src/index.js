@@ -43,6 +43,8 @@ program
 	.option('-d, --domain <titles...>', 'specify domains by title')
 	.option('-i, --id <ids...>', 'specify domains by id')
 	.option('-o, --output <file>', 'path to output file', 'report.xml')
+	.option('-r, --range <range>', 'specify data range', 'month')
+	.option('-l, --limit <number>', 'limit number of list items', 3)
 	.action((args, program) => {
 		const runner = new Runner(args, program)
 		runner.rss()
