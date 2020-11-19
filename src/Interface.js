@@ -140,6 +140,7 @@ class Ackee {
 			views: total,
 			viewsYear: viewsYear,
 			durationAvg: durationAvg(),
+			range: this.range,
 			names,
 			namesShort,
 			domains
