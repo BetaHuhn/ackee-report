@@ -2,12 +2,14 @@ const axios = require('axios')
 const { Config } = require('./Config')
 
 class Ackee {
-	constructor() {
+	constructor({ range, limit }) {
 		const config = Config.get('ackee')
 
 		this.token = config.token
 		this.username = config.username
 		this.password = config.password
+		this.range = range
+		this.limit = limit
 
 		const endpoint = this._endpoint(config.server)
 
@@ -160,31 +162,31 @@ class Ackee {
 							viewsYear
 						}
 						statistics {
-							pages(sorting: TOP, limit: 5, range: LAST_30_DAYS) {
+							pages(sorting: TOP, limit: ${ this.limit }, range: ${ this.range }) {
 								id
 								count
 							}
-							referrers(sorting: TOP, limit: 5, range: LAST_30_DAYS) {
+							referrers(sorting: TOP, limit: ${ this.limit }, range: ${ this.range }) {
 								id
 								count
 							}
-							languages(sorting: TOP, limit: 3, range: LAST_30_DAYS) {
+							languages(sorting: TOP, limit: ${ this.limit }, range: ${ this.range }) {
 								id
 								count
 							}
-							browsers(sorting: TOP, type: WITH_VERSION, limit: 3, range: LAST_30_DAYS) {
+							browsers(sorting: TOP, type: WITH_VERSION, limit: ${ this.limit }, range: ${ this.range }) {
 								id
 								count
 							}
-							devices(sorting: TOP, type: WITH_MODEL, limit: 3, range: LAST_30_DAYS) {
+							devices(sorting: TOP, type: WITH_MODEL, limit: ${ this.limit }, range: ${ this.range }) {
 								id
 								count
 							}
-							sizes(sorting: TOP, type: SCREEN_RESOLUTION, limit: 3, range: LAST_30_DAYS) {
+							sizes(sorting: TOP, type: SCREEN_RESOLUTION, limit: ${ this.limit }, range: ${ this.range }) {
 								id
 								count
 							}
-							systems(sorting: TOP, type: NO_VERSION, limit: 3, range: LAST_30_DAYS) {
+							systems(sorting: TOP, type: NO_VERSION, limit: ${ this.limit }, range: ${ this.range }) {
 								id
 								count
 							}
