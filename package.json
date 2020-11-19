@@ -29,6 +29,7 @@
 		"commander": "^6.2.0",
 		"configstore": "^5.0.1",
 		"ejs": "^3.1.5",
+		"feed": "^4.2.1",
 		"nodemailer": "^6.4.14",
 		"ora": "^5.1.0",
 		"prompt-sync": "^4.2.0"
