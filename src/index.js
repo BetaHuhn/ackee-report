@@ -15,6 +15,8 @@ program
 	.option('-d, --domain <titles...>', 'specify domains by title')
 	.option('-i, --id <ids...>', 'specify domains by id')
 	.option('-t, --to <recipient...>', 'to whom the report should be sent')
+	.option('-r, --range <range>', 'specify data range', 'month')
+	.option('-l, --limit <number>', 'limit number of list items', 3)
 	.option('-s, --style <name>', 'email style to use', 'ackee')
 	.action((args, program) => {
 		const runner = new Runner(args, program)
@@ -27,6 +29,8 @@ program
 	.option('-d, --domain <titles...>', 'specify domains by title')
 	.option('-i, --id <ids...>', 'specify domains by id')
 	.option('-o, --output <file>', 'path to output file', 'report.json')
+	.option('-r, --range <range>', 'specify data range', 'month')
+	.option('-l, --limit <number>', 'limit number of list items', 3)
 	.action((args, program) => {
 		const runner = new Runner(args, program)
 		runner.json()

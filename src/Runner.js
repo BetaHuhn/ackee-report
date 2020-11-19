@@ -2,6 +2,7 @@ const Ackee = require('./Interface')
 const ora = require('ora')
 const { loadConfig } = require('./Config')
 const Report = require('./service')
+const Constants = require('./Constants')
 
 class Runner {
 	constructor(args) {
@@ -10,14 +11,23 @@ class Runner {
 	}
 
 	async email() {
-		const { domain, id, to, style } = this.args
+		const { domain, id, to, style, range, limit } = this.args
 
-		if (!id && !domain) return ora(' error: no domain specified').fail()
+		const spinner = ora()
 
-		const spinner = ora(`Getting Ackee token from server...`).start()
+		if (!id && !domain) return spinner.fail(' error: no domain specified')
+		if (!Constants.style.includes(style)) return spinner.fail(' error: style not supported')
+
+		const dataRange = Constants.range[range]
+		if (!dataRange) return spinner.fail(' error: range not supported')
+
+		spinner.start('Getting Ackee token from server...')
 
 		try {
-			const ackee = new Ackee()
+			const ackee = new Ackee({
+				range: dataRange,
+				limit: limit
+			})
 			await ackee.login()
 
 			spinner.text = 'Login successfull'
@@ -58,14 +68,22 @@ class Runner {
 	}
 
 	async json() {
-		const { domain, id, output } = this.args
+		const { domain, id, output, range, limit } = this.args
 
-		if (!id && !domain) return ora(' error: no domain specified').fail()
+		const spinner = ora()
 
-		const spinner = ora(`Getting Ackee token from server...`).start()
+		if (!id && !domain) return spinner.fail(' error: no domain specified')
+
+		const dataRange = Constants.range[range]
+		if (!dataRange) return spinner.fail(' error: range not supported')
+
+		spinner.start('Getting Ackee token from server...')
 
 		try {
-			const ackee = new Ackee()
+			const ackee = new Ackee({
+				range: dataRange,
+				limit: limit
+			})
 			await ackee.login()
 
 			spinner.text = 'Login successfull'
