@@ -12,14 +12,14 @@ class Runner {
 
 	async email() {
 		const { domain, id, to, style, range, limit } = this.args
-
 		const spinner = ora()
 
 		if (!id && !domain) return spinner.fail(' error: no domain specified')
-		if (!Constants.style.includes(style)) return spinner.fail(' error: style not supported')
+		if (!to) return spinner.fail(' error: no email recipient specified')
+		if (!Constants.style.includes(style)) return spinner.fail(` error: style '${ style }' not supported`)
 
 		const dataRange = Constants.range[range]
-		if (!dataRange) return spinner.fail(' error: range not supported')
+		if (!dataRange) return spinner.fail(` error: range '${ range }' not supported`)
 
 		spinner.start('Getting Ackee token from server...')
 
@@ -51,8 +51,6 @@ class Runner {
 
 			spinner.text = 'Getting data...'
 			const data = await ackee.get(domains)
-
-			if (!to) return spinner.fail(' error: no recipient specified with --to')
 
 			spinner.text = `Generating email with ${ style } style...`
 			await Report.email(data, this.config.all, { to, style })
@@ -69,13 +67,13 @@ class Runner {
 
 	async json() {
 		const { domain, id, output, range, limit } = this.args
-
 		const spinner = ora()
 
 		if (!id && !domain) return spinner.fail(' error: no domain specified')
+		if (!output) return spinner.fail(' error: no output path specified')
 
 		const dataRange = Constants.range[range]
-		if (!dataRange) return spinner.fail(' error: range not supported')
+		if (!dataRange) return spinner.fail(` error: range '${ range }' not supported`)
 
 		spinner.start('Getting Ackee token from server...')
 
@@ -108,8 +106,6 @@ class Runner {
 			spinner.text = 'Getting data...'
 			const data = await ackee.get(domains)
 
-			if (!output) return spinner.fail(' error: no output path specified with --output')
-
 			spinner.text = 'Generating json...'
 			await Report.json(data, this.config.all, output)
 
@@ -125,13 +121,13 @@ class Runner {
 
 	async rss() {
 		const { domain, id, output, range, limit } = this.args
-
 		const spinner = ora()
 
 		if (!id && !domain) return spinner.fail(' error: no domain specified')
+		if (!output) return spinner.fail(' error: no output path specified')
 
 		const dataRange = Constants.range[range]
-		if (!dataRange) return spinner.fail(' error: range not supported')
+		if (!dataRange) return spinner.fail(` error: range '${ range }' not supported`)
 
 		try {
 			const ackee = new Ackee({
@@ -161,8 +157,6 @@ class Runner {
 
 			spinner.text = 'Getting data...'
 			const data = await ackee.get(domains)
-
-			if (!output) return spinner.fail(' error: no output path specified with --output')
 
 			spinner.text = 'Generating rss feed...'
 			await Report.rss(data, this.config.all, output)
