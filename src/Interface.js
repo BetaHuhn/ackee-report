@@ -2,14 +2,14 @@ const axios = require('axios')
 const { Config } = require('./Config')
 
 class Ackee {
-	constructor({ range, limit }) {
+	constructor(input) {
 		const config = Config.get('ackee')
 
 		this.token = config.token
 		this.username = config.username
 		this.password = config.password
-		this.range = range
-		this.limit = limit
+		this.range = input && input.range
+		this.limit = input && input.limit
 
 		const endpoint = this._endpoint(config.server)
 
