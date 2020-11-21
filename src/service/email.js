@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer')
 const ejs = require('ejs')
 const path = require('path')
-const Constants = require('../Constants')
 
 class Email {
 	constructor(host, port, username, password) {
@@ -23,13 +22,14 @@ class Email {
 			path.join(__dirname, `../templates/${ style }.ejs`),
 			{
 				domains: data.domains,
-				total: data.viewsMonth,
+				viewsInRange: data.viewsInRange,
 				viewsYear: data.viewsYear,
+				viewsAvg: data.viewsAvg,
 				durationAvg: data.durationAvg,
 				names: data.names,
 				namesShort: data.namesShort,
 				generatedAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
-				range: Object.keys(Constants.range).find((key) => Constants.range[key] === data.range).split('_').join(' '),
+				range: data.range,
 				endpoint,
 				to
 			}

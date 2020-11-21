@@ -115,17 +115,15 @@ class Ackee {
 		const names = data.map((domain) => domain.title).join(', ')
 		const namesShort = (data.length > 2) ? (data.slice(0, 2).map((domain) => domain.title).join(', ') + ` and ${ data.length - 2 } more`) : (data.map((domain) => domain.title).join(', '))
 
-		const viewsToday = data.reduce((n, { facts }) => n + facts.viewsToday, 0)
-		const viewsMonth = data.reduce((n, { facts }) => n + facts.viewsMonth, 0)
-		const viewsYear = data.reduce((n, { facts }) => n + facts.viewsYear, 0)
-
 		const domains = data.map((domain) => {
 			return {
 				id: domain.id,
 				title: domain.title,
-				viewsAvgDay: domain.facts.averageViews,
+				viewsInRange: domain.statistics.views.reduce((n, view) => n + view.count, 0),
+				viewsDay: domain.facts.viewsToday,
 				viewsMonth: domain.facts.viewsMonth,
 				viewsYear: domain.facts.viewsYear,
+				viewsAvg: domain.facts.averageViews,
 				durationAvg: Math.round(domain.facts.averageDuration / 1000),
 				pages: domain.statistics.pages,
 				referrers: domain.statistics.referrers,
@@ -137,10 +135,18 @@ class Ackee {
 			}
 		})
 
+		const viewsInRange = domains.reduce((n, domain) => n + domain.viewsInRange, 0)
+		const viewsDay = domains.reduce((n, domain) => n + domain.viewsDay, 0)
+		const viewsMonth = domains.reduce((n, domain) => n + domain.viewsMonth, 0)
+		const viewsYear = domains.reduce((n, domain) => n + domain.viewsYear, 0)
+		const viewsAvg = Math.round((domains.reduce((n, domain) => n + domain.viewsAvg, 0) / domains.length) * 10) / 10
+
 		const result = {
-			viewsToday: viewsToday,
-			viewsMonth: viewsMonth,
-			viewsYear: viewsYear,
+			viewsInRange,
+			viewsDay,
+			viewsMonth,
+			viewsYear,
+			viewsAvg,
 			durationAvg: durationAvg(),
 			range: this.range,
 			names,
@@ -166,6 +172,10 @@ class Ackee {
 							viewsToday
 						}
 						statistics {
+							views(interval: DAILY, type: UNIQUE, limit: ${ this.range.days }) {
+								id
+								count
+							}
 							pages(sorting: TOP, limit: ${ this.limit }, range: $range) {
 								id
 								count
@@ -201,7 +211,7 @@ class Ackee {
 
 			const variables = {
 				id: id,
-				range: this.range
+				range: this.range.input
 			}
 
 			const { data } = await this.axios.post('api',
