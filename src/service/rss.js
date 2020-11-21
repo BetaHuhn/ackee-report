@@ -9,7 +9,7 @@ const report = async function(data, config, output) {
 	return new Promise((resolve, reject) => {
 		const feed = new Feed({
 			title: 'Ackee Report',
-			description: `Here is your report for ${ data.namesShort }`,
+			description: `Here is your ${ data.range.interval } report for ${ data.namesShort }`,
 			id: config.ackee.server,
 			link: config.ackee.server,
 			language: 'en',
@@ -18,7 +18,7 @@ const report = async function(data, config, output) {
 		})
 
 		data.domains.forEach((domain) => {
-			let content = `<p><b>Average views per day</b></p><p>${ domain.viewsAvgDay }</p><p><b>Average duration</b></p><p>${ domain.durationAvg }s</p><p><b>Views this month</b></p><p>${ domain.viewsMonth }</p>`
+			let content = `<p><b>Total views/${ data.range.name }</b></p><p>${ domain.viewsInRange }</p><p><b>Average views/day</b></p><p>${ domain.viewsAvg }</p><p><b>Average duration</b></p><p>${ domain.durationAvg }s</p>`
 
 			for (const idx in items) {
 				const field = domain[items[idx]]
