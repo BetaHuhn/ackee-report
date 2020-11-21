@@ -15,7 +15,7 @@ CLI tool to generate performance reports of websites using the self-hosted analy
 
 ## 👋 Introduction
 
-[ackee-report](https://github.com/BetaHuhn/ackee-report) lets you create monthly website performance reports using your [Ackee](https://github.com/electerious/ackee) analytics data and deliver them to multiple recipients via email. It uses [Ackee's](https://github.com/electerious/ackee) Graphql API and can be configured to send multiple reports for different websites and recipients.
+[ackee-report](https://github.com/BetaHuhn/ackee-report) lets you create monthly website performance reports using your [Ackee](https://github.com/electerious/ackee) analytics data and either send them via email, generate a RSS feed or output it to a JSON file. It uses [Ackee's](https://github.com/electerious/ackee) Graphql API and can be configured to generate multiple reports for different websites, data ranges and recipients.
 
 ## 🚀 Get started
 
@@ -109,16 +109,36 @@ If you use SendGrid to send emails, use these values:
 ## 📚 Usage
 
 ```shell
-Usage: ackee-report email [options]
+Usage: ackee-report <command> [options]
 
-Generate report and send it via email
+CLI tool to generate performance reports of websites using the self-hosted analytics tool Ackee.
+
+Commands:
+  email [options]             Generate report and send it via email
+  json [options]              Query API for data and output it to JSON file
+  rss|xml [options]           Generate report as a RSS feed
+  domains|domain [titles...]  get domain id by title
+  config                      output current config
+  help [command]              display help for command
 
 Options:
-  -d, --domain <titles...>  specify domains by title
-  -i, --id <ids...>         specify domains by id
-  -t, --to <recipient...>   to whom the report should be sent
-  -s, --style <name>        email style to use (default: "ackee")
-  -h, --help                display help for command
+  General:
+    -d, --domain <titles...>    specify domains by title
+    -i, --id <ids...>           specify domains by id
+    -r, --range <range>         specify data range (default: "month")
+    -l, --limit <number>        limit number of list items (default: 3)
+    -v, --version               output the version number
+    -h, --help                  display help for command
+
+  Email:
+    -t, --to <recipient...>     to whom the report should be sent
+    -s, --style <name>          email style to use (default: "ackee")
+
+  RSS/JSON:
+    -o, --output <file>         path to output file (default: "report.xml")
+
+Example call:
+  $ ackee-report email --domain example.com --to hello@example.com
 ```
 
 If you want to send the report periodically, you have to setup a cron job which runs the command at a set interval (example below).
@@ -139,6 +159,18 @@ This will generate a report for the domain `example.com` and send it via email t
 ackee-report email -d example.com example2.com -t hello@example.com hey@example2.com
 ```
 
+### Custom range
+
+You can specify the data range of the report with the `-r`/`--range` option:
+
+```shell
+ackee-report email -d example.com -t hello@example.com -r day
+```
+
+Available values: `day`/`week`/`month`/`six_months`.
+
+**Note:** The `total views/range` value is calculated by counting the views of the last x days since the program ran. For the `month` range for example, it is not the number of views in the current month, but the number of views in the last 30 days.
+
 ### Send the report periodically (cron)
 
 To send a report periodically, for example every month at the 28th at 23:55 setup a cron job like this:
@@ -155,9 +187,17 @@ If you are not familiar with cron, [here's](https://ostechnix.com/a-beginners-gu
 
 To send multiple reports to different people, add them all as seperate cron jobs.
 
+### Generate RSS feed
+
+You can generate a RSS feed/xml file instead of sending the report via email:
+
+```shell
+ackee-report rss -d example.com -o output.xml
+```
+
 ### Output the report to a JSON file
 
-You can also save the report in a JSON file instead of sending it via email:
+You can also save the report in a JSON file:
 
 ```shell
 ackee-report json -d example.com -o output.json
@@ -166,15 +206,6 @@ ackee-report json -d example.com -o output.json
 ## 🖼️ Screenshot
 
 ![preview](https://cdn.mxis.ch/assets/ackee-report/multiple.png)
-
-## 📝 To do
-
-Here is what's currently planned for [ackee-report](https://github.com/BetaHuhn/ackee-report):
-
-- more customization of data included in report
-- display data with charts
-- change config file via cli
-- add more services (e.g. Telegram)
 
 ## 💻 Development
 
