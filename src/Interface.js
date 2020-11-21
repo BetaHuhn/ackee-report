@@ -115,7 +115,8 @@ class Ackee {
 		const names = data.map((domain) => domain.title).join(', ')
 		const namesShort = (data.length > 2) ? (data.slice(0, 2).map((domain) => domain.title).join(', ') + ` and ${ data.length - 2 } more`) : (data.map((domain) => domain.title).join(', '))
 
-		const total = data.reduce((n, { facts }) => n + facts.viewsMonth, 0)
+		const viewsToday = data.reduce((n, { facts }) => n + facts.viewsToday, 0)
+		const viewsMonth = data.reduce((n, { facts }) => n + facts.viewsMonth, 0)
 		const viewsYear = data.reduce((n, { facts }) => n + facts.viewsYear, 0)
 
 		const domains = data.map((domain) => {
@@ -137,7 +138,8 @@ class Ackee {
 		})
 
 		const result = {
-			views: total,
+			viewsToday: viewsToday,
+			viewsMonth: viewsMonth,
 			viewsYear: viewsYear,
 			durationAvg: durationAvg(),
 			range: this.range,
@@ -152,7 +154,7 @@ class Ackee {
 	async _getDomainData(id) {
 		try {
 			const query = `
-				query getDomain($id: ID!) {
+				query getDomain($id: ID!, $range: Range!) {
 					domain(id: $id) {
 						id
 						title
@@ -161,33 +163,34 @@ class Ackee {
 							averageDuration
 							viewsMonth
 							viewsYear
+							viewsToday
 						}
 						statistics {
-							pages(sorting: TOP, limit: ${ this.limit }, range: ${ this.range }) {
+							pages(sorting: TOP, limit: ${ this.limit }, range: $range) {
 								id
 								count
 							}
-							referrers(sorting: TOP, limit: ${ this.limit }, range: ${ this.range }) {
+							referrers(sorting: TOP, limit: ${ this.limit }, range: $range) {
 								id
 								count
 							}
-							languages(sorting: TOP, limit: ${ this.limit }, range: ${ this.range }) {
+							languages(sorting: TOP, limit: ${ this.limit }, range: $range) {
 								id
 								count
 							}
-							browsers(sorting: TOP, type: WITH_VERSION, limit: ${ this.limit }, range: ${ this.range }) {
+							browsers(sorting: TOP, type: WITH_VERSION, limit: ${ this.limit }, range: $range) {
 								id
 								count
 							}
-							devices(sorting: TOP, type: WITH_MODEL, limit: ${ this.limit }, range: ${ this.range }) {
+							devices(sorting: TOP, type: WITH_MODEL, limit: ${ this.limit }, range: $range) {
 								id
 								count
 							}
-							sizes(sorting: TOP, type: SCREEN_RESOLUTION, limit: ${ this.limit }, range: ${ this.range }) {
+							sizes(sorting: TOP, type: SCREEN_RESOLUTION, limit: ${ this.limit }, range: $range) {
 								id
 								count
 							}
-							systems(sorting: TOP, type: NO_VERSION, limit: ${ this.limit }, range: ${ this.range }) {
+							systems(sorting: TOP, type: NO_VERSION, limit: ${ this.limit }, range: $range) {
 								id
 								count
 							}
@@ -197,7 +200,8 @@ class Ackee {
 			`
 
 			const variables = {
-				id: id
+				id: id,
+				range: this.range
 			}
 
 			const { data } = await this.axios.post('api',
