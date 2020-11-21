@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.6.0] - 2020-11-21
+
+### Added
+
+- rss command to generate report as xml file/rss feed ([#7](https://github.com/BetaHuhn/ackee-report/issues/7))
+- --range option to specify data range (day/week/month/six_months)
+- --limit option which limits the number of list items (referrers, pages, etc.)
+
+### Changed
+
+- views count is now based on range option
+- changed wording of email title/preview text
+- refactoring
+- update dependencies
+
 ## [v0.5.0] - 2020-11-01
 
 ### Added
