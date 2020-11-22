@@ -232,9 +232,9 @@
                                                                                             <ul>
                                                                                                 <% domain.pages.forEach(function (page) { %>
                                                                                                     <li>
-                                                                                                        <span class="link" style="color:  #73fac8 !important"><%= page.id %></span> -
-                                                                                                        <%= page.count %> visits</li>
-                                                                                                    <% }) %>
+                                                                                                        <a class="link" style="color:  #73fac8 !important" href="<%= page.id %>"><%= page.id %></a> - <%= page.count %> visits
+                                                                                                    </li>
+                                                                                                <% }) %>
                                                                                             </ul>
 
                                                                                             <%if (domain.referrers.length > 0) { %>
@@ -242,9 +242,9 @@
                                                                                                 <ul>
                                                                                                     <% domain.referrers.forEach(function (referrer) { %>
                                                                                                         <li>
-                                                                                                            <span class="link" style="color:  #73fac8 !important"><%= referrer.id %></span> -
-                                                                                                            <%= referrer.count %> visits</li>
-                                                                                                        <% }) %>
+                                                                                                            <a class="link" style="color:  #73fac8 !important" href="<%= referrer.id %>"><%= referrer.id %></a> - <%= referrer.count %> visits
+                                                                                                        </li>
+                                                                                                    <% }) %>
                                                                                                 </ul>
                                                                                                 <% } %>
                                                                                                     <%if (domain.languages.length > 0) { %>

@@ -26,7 +26,11 @@ const report = async function(data, config, output) {
 
 				let list = `<p><b>Top ${ capitalize(items[idx]) }</b></p>`
 				field.forEach((item) => {
-					list += (`<p>${ item.id } - ${ item.count } times</p>`)
+					if (items[idx] === 'pages' || items[idx] === 'referrers') {
+						list += (`<p><a href="${ item.id }">${ item.id }</a> - ${ item.count } times</p>`)
+					} else {
+						list += (`<p>${ item.id } - ${ item.count } times</p>`)
+					}
 				})
 
 				content += list
