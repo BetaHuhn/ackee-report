@@ -11,8 +11,10 @@ const verifyField = (field) => {
 	if (existing) return existing
 
 	const text = field.split('.').join(' ')
-	let value = prompt(`${ text }: `)
-	if (value.length < 1) {
+	const required = !field.includes('email')
+	const output = text + (required ? ' (required):' : ' (press enter to skip):')
+	let value = prompt(output)
+	if (value.length < 1 && required) {
 		value = verifyField(field)
 	}
 
@@ -22,8 +24,7 @@ const verifyField = (field) => {
 
 const loadConfig = function() {
 	if (!(config.get('ackee.token') || (config.get('ackee.username') && config.get('ackee.password')))) {
-
-		const token = prompt('Ackee token (press enter to skip): ')
+		const token = prompt('ackee token (press enter to skip): ')
 		if (token.length < 1) {
 
 			verifyField('ackee.username')
@@ -32,7 +33,6 @@ const loadConfig = function() {
 		} else {
 			config.set('ackee.token', token)
 		}
-
 	}
 
 	fields.forEach((field) => {
