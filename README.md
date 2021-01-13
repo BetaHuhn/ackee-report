@@ -30,17 +30,21 @@ After that `ackee-report` is ready to be used 🎉
 
 On the first run [ackee-report](https://github.com/BetaHuhn/ackee-report) will ask you to input a few values:
 
-- *ackee server* - the endpoint of your Ackee instance
-- *ackee token* - a permanent Ackee token (can be used instead of username and password, [more info](#ackee-api-authentication))
-- *ackee username* - your Ackee username ([more info](#ackee-api-authentication))
-- *ackee password* - your Ackee password ([more info](#ackee-api-authentication))
-- *email host* - the domain of the email server ([more info](#email-setup))
-- *email port* - the port of the email server ([more info](#email-setup))
-- *email username* - the username to use with the email server ([more info](#email-setup))
-- *email password* - the password to use with the email server ([more info](#email-setup))
-- *email from* - the from address to use ([more info](#email-setup))
+- *ackee server* / `ACKEE_SERVER` - the endpoint of your Ackee instance
+- *ackee token* / `ACKEE_TOKEN` - a permanent Ackee token (can be used instead of username and password, [more info](#ackee-api-authentication))
+- *ackee username* `ACKEE_USERNAME` - your Ackee username ([more info](#ackee-api-authentication))
+- *ackee password* `ACKEE_PASSWORD` - your Ackee password ([more info](#ackee-api-authentication))
+- *email host* / `EMAIL_HOST` - the domain of the email server ([more info](#email-setup))
+- *email port* / `EMAIL_PORT` - the port of the email server ([more info](#email-setup))
+- *email username* / `EMAIL_USERNAME` - the username to use with the email server ([more info](#email-setup))
+- *email password* / `EMAIL_PASSWORD` - the password to use with the email server ([more info](#email-setup))
+- *email from* / `EMAIL_FROM` - the from address to use ([more info](#email-setup))
 
 The configuration will be stored in your home directory under `~/.config/configstore/ackee-report.json` and can be changed at any point.
+
+### Environment Variables
+
+If you don't want to interact with [ackee-report](https://github.com/BetaHuhn/ackee-report) via the CLI interface, you can also specify each configuration option as an environment variable e.g. `ACKEE_TOKEN=<token>`
 
 ### Ackee API authentication
 
