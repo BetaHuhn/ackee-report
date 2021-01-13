@@ -1,3 +1,16 @@
+## [v0.7.0] - 2021-01-13
+
+[Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v0.7.0) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v0.6.4...v0.7.0) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v0.7.0) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v0.7.0.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v0.7.0.tar.gz))
+
+### New features
+
+- [`b5ecb58`](https://github.com/BetaHuhn/ackee-report/commit/b5ecb58)  Add support for env variables as config
+
+### Dependency updates
+
+- [`37b9be3`](https://github.com/BetaHuhn/ackee-report/commit/37b9be3)  Bump ejs-serve from 1.0.4 to 1.0.5 (#23)
+(Issues: [`#23`](https://github.com/BetaHuhn/ackee-report/issues/23))
+
 ## [v0.6.4] - 2021-01-05
 
 ### Changed
