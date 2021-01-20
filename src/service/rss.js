@@ -26,10 +26,10 @@ const report = async function(data, config, output) {
 
 				let list = `<p><b>Top ${ capitalize(items[idx]) }</b></p>`
 				field.forEach((item) => {
-					if (items[idx] === 'pages' || items[idx] === 'referrers') {
-						list += (`<p><a href="${ item.id }">${ item.id }</a> - ${ item.count } times</p>`)
+					if (item.id.startsWith('http')) {
+						list += (`<p>${ item.count }x - <a href="${ item.id }">${ item.id }</a></p>`)
 					} else {
-						list += (`<p>${ item.id } - ${ item.count } times</p>`)
+						list += (`<p>${ item.count }x - ${ item.id }</p>`)
 					}
 				})
 
@@ -43,6 +43,23 @@ const report = async function(data, config, output) {
 				date: new Date()
 			})
 		})
+
+		if (data.events !== undefined && data.events.length > 0) {
+			data.events.forEach((event) => {
+				let content = ''
+
+				event.data.forEach((item) => {
+					content += `<p>${ item.count }x - ${ item.id }</p>`
+				})
+
+				feed.addItem({
+					title: `Event: ${ event.title }`,
+					description: content,
+					link: config.ackee.server,
+					date: new Date()
+				})
+			})
+		}
 
 		const result = feed.rss2()
 
