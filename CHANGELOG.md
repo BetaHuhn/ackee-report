@@ -1,3 +1,21 @@
+## [Unreleased]
+
+Events, and an improved email report.
+
+### New features
+
+- `ackee-report` now supports Events which where added in Ackee V3
+- Improved email report design
+
+### Changes
+
+- Behind the scenes emails are now rendered with [mjml](https://mjml.io/) which should result in a much cleaner and more responsive email
+- Refactoring of `ackee-report`'s core
+
+### Breaking changes
+
+- There is now only one email style so the `--style` option is no longer valid
+
 ## [v0.7.0] - 2021-01-13
 
 [Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v0.7.0) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v0.6.4...v0.7.0) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v0.7.0) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v0.7.0.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v0.7.0.tar.gz))
