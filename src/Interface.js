@@ -180,7 +180,7 @@ class Ackee {
 								id
 								count
 							}
-							referrers(sorting: TOP, limit: ${ this.limit }, range: $range) {
+							referrers(sorting: TOP, limit: ${ this.limit }, range: $range, type: WITH_SOURCE) {
 								id
 								count
 							}
