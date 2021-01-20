@@ -10,11 +10,13 @@ class Ackee {
 		this.password = config.password
 		this.range = input && input.range
 		this.limit = input && input.limit
+		this.events = input && input.events
+		this.eventType = input && input.eventType
 
 		const endpoint = this._endpoint(config.server)
-
 		this.axios = axios.create({ baseURL: endpoint })
 
+		// Intercept any errors which are returned by the Ackee API
 		this.axios.interceptors.response.use((response) => {
 			if (response.data.errors !== undefined) {
 				const err = new Error()
@@ -27,7 +29,7 @@ class Ackee {
 		}, (err) => {
 			if (err && err.response && err.response.data) {
 				err.name = 'AckeeApiError'
-				err.message = `${ err.response.data } (${ err.response.statusCode } status code)`
+				err.message = `${ JSON.stringify(err.response.data) } (${ err.response.statusCode || err.response.status } status code)`
 				throw err
 			}
 
@@ -103,16 +105,34 @@ class Ackee {
 	}
 
 	async get(ids) {
+		// Query API for each domain
 		const getData = async () => Promise.all(ids.map((id) => this._getDomainData(id)))
 		const data = await getData()
 
+		// If events option is set to true also get data for events
+		let events
+		if (this.events === true) {
+			const result = await this._getEventData()
+			events = result.map((event) => {
+				return {
+					id: event.id,
+					title: event.title,
+					data: event.statistics.list
+				}
+			})
+		}
+
+		// Calculate overall duration average
 		const durationAvg = () => {
 			const durations = data.filter((domain) => domain.facts.averageDuration > 0)
 			const avg = data.reduce((n, { facts }) => n + facts.averageDuration, 0) / durations.length
 			return Math.round(avg / 1000)
 		}
 
+		// Return all domain names as a string
 		const names = data.map((domain) => domain.title).join(', ')
+
+		// Return domain names with a count if more than 2 as a string
 		const namesShort = (data.length > 2) ? (data.slice(0, 2).map((domain) => domain.title).join(', ') + ` and ${ data.length - 2 } more`) : (data.map((domain) => domain.title).join(', '))
 
 		const domains = data.map((domain) => {
@@ -135,6 +155,7 @@ class Ackee {
 			}
 		})
 
+		// Calculate various other metrics
 		const viewsInRange = domains.reduce((n, domain) => n + domain.viewsInRange, 0)
 		const viewsDay = domains.reduce((n, domain) => n + domain.viewsDay, 0)
 		const viewsMonth = domains.reduce((n, domain) => n + domain.viewsMonth, 0)
@@ -142,6 +163,8 @@ class Ackee {
 		const viewsAvg = Math.round((domains.reduce((n, domain) => n + domain.viewsAvg, 0) / domains.length) * 10) / 10
 
 		const result = {
+			names,
+			namesShort,
 			viewsInRange,
 			viewsDay,
 			viewsMonth,
@@ -149,8 +172,7 @@ class Ackee {
 			viewsAvg,
 			durationAvg: durationAvg(),
 			range: this.range,
-			names,
-			namesShort,
+			events,
 			domains
 		}
 
@@ -226,6 +248,44 @@ class Ackee {
 			return domain
 
 		} catch (err) {
+			throw new Error(err)
+		}
+	}
+
+	async _getEventData() {
+		try {
+			const query = `
+				query getEvents($range: Range!) {
+					events {
+						id
+						title
+						statistics {
+							list(sorting: TOP, type: ${ this.eventType }, range: $range, limit: ${ this.limit }) {
+								id
+								count
+							}
+						}
+					}
+				}
+			`
+
+			const variables = {
+				range: this.range.input
+			}
+
+			const { data } = await this.axios.post('api',
+				JSON.stringify({
+					query,
+					variables
+				})
+			)
+
+			const events = data.data.events
+
+			return events
+
+		} catch (err) {
+			console.log(err.response.data)
 			throw new Error(err)
 		}
 	}

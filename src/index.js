@@ -17,6 +17,7 @@ program
 	.option('-t, --to <recipient...>', 'to whom the report should be sent')
 	.option('-r, --range <range>', 'specify data range', 'month')
 	.option('-l, --limit <number>', 'limit number of list items', 3)
+	.option('-e, --events [type]', 'get event data', false)
 	.option('-s, --style <name>', 'email style to use', 'ackee')
 	.action(async (args, program) => {
 		const runner = new Runner(args, program)
@@ -35,6 +36,7 @@ program
 	.option('-o, --output <file>', 'path to output file', 'report.json')
 	.option('-r, --range <range>', 'specify data range', 'month')
 	.option('-l, --limit <number>', 'limit number of list items', 3)
+	.option('-e, --events [type]', 'get event data', false)
 	.action(async (args, program) => {
 		const runner = new Runner(args, program)
 
@@ -53,6 +55,7 @@ program
 	.option('-o, --output <file>', 'path to output file', 'report.xml')
 	.option('-r, --range <range>', 'specify data range', 'month')
 	.option('-l, --limit <number>', 'limit number of list items', 3)
+	.option('-e, --events [type]', 'get event data', false)
 	.action(async (args, program) => {
 		const runner = new Runner(args, program)
 

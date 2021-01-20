@@ -25,5 +25,9 @@ module.exports = {
 			interval: 'half-yearly'
 		}
 	},
-	style: [ 'ackee', 'basic' ]
+	style: [ 'ackee', 'basic' ],
+	eventType: {
+		avg: 'AVERAGE',
+		total: 'TOTAL'
+	}
 }
