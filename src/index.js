@@ -18,8 +18,12 @@ program
 	.option('-r, --range <range>', 'specify data range', 'month')
 	.option('-l, --limit <number>', 'limit number of list items', 3)
 	.option('-s, --style <name>', 'email style to use', 'ackee')
-	.action((args, program) => {
+	.action(async (args, program) => {
 		const runner = new Runner(args, program)
+
+		const data = await runner.getData()
+		if (!data) return
+
 		runner.email()
 	})
 
@@ -31,9 +35,13 @@ program
 	.option('-o, --output <file>', 'path to output file', 'report.json')
 	.option('-r, --range <range>', 'specify data range', 'month')
 	.option('-l, --limit <number>', 'limit number of list items', 3)
-	.action((args, program) => {
+	.action(async (args, program) => {
 		const runner = new Runner(args, program)
-		runner.json()
+
+		const data = await runner.getData()
+		if (!data) return
+
+		runner.json(data)
 	})
 
 program
@@ -45,8 +53,12 @@ program
 	.option('-o, --output <file>', 'path to output file', 'report.xml')
 	.option('-r, --range <range>', 'specify data range', 'month')
 	.option('-l, --limit <number>', 'limit number of list items', 3)
-	.action((args, program) => {
+	.action(async (args, program) => {
 		const runner = new Runner(args, program)
+
+		const data = await runner.getData()
+		if (!data) return
+
 		runner.rss()
 	})
 
