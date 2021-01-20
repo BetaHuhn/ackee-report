@@ -25,7 +25,7 @@ program
 		const data = await runner.getData()
 		if (!data) return
 
-		runner.email()
+		runner.email(data)
 	})
 
 program
@@ -62,7 +62,7 @@ program
 		const data = await runner.getData()
 		if (!data) return
 
-		runner.rss()
+		runner.rss(data)
 	})
 
 program

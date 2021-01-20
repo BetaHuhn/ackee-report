@@ -79,7 +79,7 @@ class Runner {
 
 	async email(data) {
 		const { to, style } = this.args
-		const spinner = ora()
+		const spinner = this.spinner
 
 		try {
 			if (to === undefined) throw new Error(' error: no email recipient specified')
@@ -128,7 +128,7 @@ class Runner {
 
 	async rss(data) {
 		const { output } = this.args
-		const spinner = ora()
+		const spinner = this.spinner
 
 		try {
 			if (output === undefined) throw new Error(' error: no output path specified')
