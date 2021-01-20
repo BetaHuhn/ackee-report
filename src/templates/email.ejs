@@ -1,0 +1,223 @@
+<mjml>
+    <mj-head>
+        <mj-title>Here is your <%= range.interval %> website performance report for <%=namesShort%></mj-title>
+        <mj-preview>Here is your <%= range.interval %> website performance report for <%=namesShort%></mj-preview>
+        <mj-attributes>
+            <mj-text color="#fff" font-size="15px" font-family="sans-serif" />
+        </mj-attributes>
+        <mj-style>
+            .apple-link a {
+                color: #fff;
+                font-family: inherit !important;
+                font-size: inherit !important;
+                font-weight: inherit !important;
+                line-height: inherit !important;
+                text-decoration: none !important;
+            }
+            a {
+                text-decoration: none;
+                color: #fff;
+            }
+            a[href] {
+                text-decoration: none;
+                color: #fff;
+            }
+            u+#body a {
+                color: #fff;
+                text-decoration: none;
+                font-size: inherit;
+                font-family: inherit;
+                font-weight: inherit;
+                line-height: inherit;
+            }
+            #outlookLink {
+                text-decoration: none;
+                color: #fff !important
+            }
+            .mail-detail-content a[href] {
+                text-decoration: none;
+                color: #fff !important
+            }
+            #MessageViewBody a {
+                color: #fff;
+                text-decoration: none;
+                font-size: inherit;
+                font-family: inherit;
+                font-weight: inherit;
+                line-height: inherit;
+            }
+            .nolink {
+                text-decoration: none;
+                color: #fff !important
+            }
+            .nolink a {
+                text-decoration: none;
+                color: #fff !important
+            }
+            .link {
+                text-decoration: none;
+                color: #73fac8;
+            }
+            .link a {
+                text-decoration: none;
+                color: #73fac8 !important
+            }
+            .link a[href] {
+                text-decoration: none;
+                color: #73fac8 !important
+            }
+        </mj-style>
+    </mj-head>
+    <mj-body background-color="#282d2d" width="1000px" padding="10px">
+        <!-- Title -->
+        <mj-section>
+            <mj-column>
+                <mj-image width="100px" align="center" src="data:image/png;base64,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" />
+                <mj-text font-weight="350" font-size="30px" align="center">
+                    Ackee Report
+                </mj-text>
+                <mj-text font-size="14px" css-class="nolink" color="#b9b9b9" align="center">
+                    Here is your <%= range.interval %> report for <%=namesShort%>
+                </mj-text>
+              </mj-column>
+        </mj-section>
+
+        <!-- Overview -->
+        <mj-section full-width="full-width" padding-left="10px" padding-top="5px">
+            <mj-column>
+                <mj-text font-weight="bold" font-size="21px" padding="0">
+                    Overview
+                </mj-text>
+            </mj-column>
+        </mj-section>
+        <mj-section full-width="full-width" padding-top="0" padding-bottom="5px">
+            <mj-column inner-background-color="#333838" inner-border-radius="6px" padding="10px">
+                <mj-text font-weight="300" font-size="30px" color="#73fac8" align="center" padding-top="25px">
+                    <%=viewsInRange%>
+                </mj-text>
+                <mj-text font-weight="300" font-size="15px" align="center" color="#b9b9b9" padding-bottom="25px">
+                    Views this month
+                </mj-text>
+            </mj-column>
+            <mj-column inner-background-color="#333838" inner-border-radius="6px" padding="10px">
+                <mj-text font-weight="300" font-size="30px" color="#73fac8" align="center" padding-top="25px">
+                    <%=durationAvg%>s
+                </mj-text>
+                <mj-text font-weight="300" font-size="15px" align="center" color="#b9b9b9" padding-bottom="25px">
+                    Average duration
+                </mj-text>
+            </mj-column>
+            <mj-column inner-background-color="#333838" inner-border-radius="6px" padding="10px">
+                <mj-text font-weight="300" font-size="30px" color="#73fac8" align="center" padding-top="25px">
+                    <%=viewsYear%>
+                </mj-text>
+                <mj-text font-weight="300" font-size="15px" align="center" color="#b9b9b9" padding-bottom="25px">
+                    Views this year
+                </mj-text>
+            </mj-column>
+        </mj-section>
+
+        <!-- Domains -->
+        <% domains.forEach(function (domain) { %>
+            <mj-section full-width="full-width" padding-left="10px" padding-top="5px">
+                <mj-column>
+                    <mj-text font-weight="bold" font-size="21px" padding="0">
+                        <%= domain.title %>
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+            <!-- Domain Overview -->
+            <mj-section full-width="full-width" padding-top="0" padding-bottom="5px">
+                <mj-column inner-background-color="#333838" inner-border-radius="6px" padding="10px">
+                    <mj-text font-weight="300" font-size="30px" color="#73fac8" align="center" padding-top="25px">
+                    <%= domain.viewsInRange %>
+                    </mj-text>
+                    <mj-text font-weight="300" font-size="15px" align="center" color="#b9b9b9" padding-bottom="25px">
+                        Views this month
+                    </mj-text>
+                </mj-column>
+                <mj-column inner-background-color="#333838" inner-border-radius="6px" padding="10px">
+                    <mj-text font-weight="300" font-size="30px" color="#73fac8" align="center" padding-top="25px">
+                    <%= domain.durationAvg %>s
+                    </mj-text>
+                    <mj-text font-weight="300" font-size="15px" align="center" color="#b9b9b9" padding-bottom="25px">
+                        Average duration
+                    </mj-text>
+                </mj-column>
+                <mj-column inner-background-color="#333838" inner-border-radius="6px" padding="10px">
+                    <mj-text font-weight="300" font-size="30px" color="#73fac8" align="center" padding-top="25px">
+                        <%= domain.viewsAvg %>
+                    </mj-text>
+                    <mj-text font-weight="300" font-size="15px" align="center" color="#b9b9b9" padding-bottom="25px">
+                        Average views
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+            <!-- Domain details -->
+            <% domain.rows.forEach(function (row) { %>
+                <mj-section full-width="full-width" padding-top="0" padding-bottom="5px">
+                    <% row.forEach(function (insight) { %>
+                        <mj-column inner-background-color="#333838" inner-border-radius="6px" padding="10px">
+                            <mj-text font-weight="320" font-size="18px" padding-top="25px">
+                                <%= insight.title %>
+                            </mj-text>
+                            <mj-column padding-left="5px" padding-bottom="10px" width="100%">
+                                <% insight.data.forEach(function (item) { %>
+                                    <mj-text font-size="15px" color="#b9b9b9" >
+                                        <% if (item.id.startsWith("http")) { %>
+                                            <p style="margin: 0;"><span style="color: #73fac8; margin-right: 5px;"><%= item.count %>x</span> <a css-class="link" style="color:#b9b9b9 !important" href="<%= item.id %>"><%= item.id %></a></p>
+                                        <% } else { %>
+                                            <p style="margin: 0;"><span style="color: #73fac8; margin-right: 5px;"><%= item.count %>x</span> <%= item.id %></p>
+                                        <% } %>
+                                    </mj-text>
+                                <% }) %>
+                            </mj-column>
+                        </mj-column>
+                    <% }) %>
+                </mj-section>
+            <% }) %>    
+        <% }) %>
+
+        <!-- Domains -->
+        <% if (events !== undefined && events.length > 0) { %>
+            <mj-section full-width="full-width" padding-left="10px" padding-top="5px">
+                <mj-column>
+                    <mj-text font-weight="bold" font-size="21px" padding="0">
+                        Events
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+            <!-- Event items -->
+            <% events.forEach(function (row) { %>
+                <mj-section full-width="full-width" padding-top="0" padding-bottom="5px">
+                    <% row.forEach(function (event) { %>
+                        <mj-column inner-background-color="#333838" inner-border-radius="6px" padding="10px">
+                            <mj-text font-weight="320" font-size="18px" padding-top="25px">
+                                <%= event.title %>
+                            </mj-text>
+                            <mj-column padding-left="5px" padding-bottom="10px" width="100%">
+                                <% event.data.forEach(function (item) { %>
+                                    <mj-text font-size="15px" color="#b9b9b9" >
+                                        <p style="margin: 0;"><span style="color: #73fac8; margin-right: 5px;"><%= item.count.toFixed(2) %>x</span> <%= item.id %></p>
+                                    </mj-text>
+                                <% }) %>
+                            </mj-column>
+                        </mj-column>
+                    <% }) %>
+                </mj-section>
+            <% }) %>    
+        <% } %>
+
+        <mj-section>
+            <mj-column>
+                <mj-text font-size="12px" css-class="nolink" align="center" color="#b9b9b9">
+                    View all current statistics on <a css-class="link" href="<%=endpoint%>" style="color:#73fac8 !important; text-decoration: none;"><%=endpoint%></a>
+                </mj-text>
+                <mj-text font-size="12px" css-class="nolink" align="center" color="#b9b9b9">
+                    This report was generated at <%=generatedAt%> and includes data for the <%=range.input.toLowerCase().split('_').join(' ') %>.
+                </mj-text>
+              </mj-column>
+        </mj-section>
+    </mj-body>
+  </mjml>
+  

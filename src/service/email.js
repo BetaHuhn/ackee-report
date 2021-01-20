@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer')
 const ejs = require('ejs')
+const mjml = require('mjml')
 const path = require('path')
 
 class Email {
@@ -17,12 +18,53 @@ class Email {
 		this.transporter = transporter
 	}
 
-	async html(data, endpoint, to, style) {
+	async render(data, endpoint, to) {
+		// Prepare list items
+		const listItems = [ 'pages', 'referrers', 'languages', 'browsers', 'devices', 'sizes', 'systems' ]
+		const domains = data.domains.map((domain) => {
+			// Filter domains
+			const result = listItems
+				.filter((item) => domain[item] === undefined || domain[item].length)
+				.map((item) => {
+					return {
+						title: item.charAt(0).toUpperCase() + item.slice(1),
+						data: domain[item]
+					}
+				})
+
+			// Split domains into chunks
+			const chunked = []
+			for (let i = 0; i < result.length; i += 2) {
+				chunked.push(result.slice(i, i + 2))
+			}
+
+			return {
+				id: domain.id,
+				title: domain.title,
+				viewsInRange: domain.viewsInRange,
+				viewsDay: domain.viewsDay,
+				viewsMonth: domain.viewsMonth,
+				viewsYear: domain.viewsYear,
+				viewsAvg: domain.viewsAvg,
+				durationAvg: domain.durationAvg,
+				rows: chunked
+			}
+		})
+
+		// Split events into chunks
+		const events = []
+		if (data.events !== undefined && data.events.length > 0) {
+			for (let i = 0; i < data.events.length; i += 2) {
+				events.push(data.events.slice(i, i + 2))
+			}
+		}
+
+		// Render email with data
 		const html = await ejs.renderFile(
-			path.join(__dirname, `../templates/${ style }.ejs`),
+			path.join(__dirname, `../templates/email.ejs`),
 			{
-				domains: data.domains,
-				events: data.events,
+				domains,
+				events,
 				viewsInRange: data.viewsInRange,
 				viewsYear: data.viewsYear,
 				viewsAvg: data.viewsAvg,
@@ -36,7 +78,15 @@ class Email {
 			}
 		)
 
-		return html
+		// Generate final email
+		const htmlOutput = mjml(html, { validationLevel: 'skip' })
+
+		if (htmlOutput.errors.length > 0) {
+			console.log(htmlOutput.errors)
+			throw new Error(JSON.stringify(htmlOutput.errors))
+		}
+
+		return htmlOutput.html
 	}
 
 	send(from, to, subject, html) {
@@ -59,18 +109,18 @@ class Email {
 	}
 }
 
-const report = async function(data, config, param) {
+const report = async function(data, config, to) {
 	// eslint-disable-next-line no-async-promise-executor
 	return new Promise(async (resolve) => {
 
 		const { host, port, username, password, from } = config.email
 
 		const email = new Email(host, port, username, password)
-		const html = await email.html(data, config.ackee.server, param.to, param.style)
+		const html = await email.render(data, config.ackee.server, to)
 
 		const subject = `Ackee report for ${ data.namesShort }`
 
-		email.send(from, param.to, subject, html).then((info) => {
+		email.send(from, to, subject, html).then((info) => {
 			resolve(info)
 		})
 	})

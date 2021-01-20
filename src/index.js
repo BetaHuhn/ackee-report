@@ -18,7 +18,6 @@ program
 	.option('-r, --range <range>', 'specify data range', 'month')
 	.option('-l, --limit <number>', 'limit number of list items', 3)
 	.option('-e, --events [type]', 'get event data', false)
-	.option('-s, --style <name>', 'email style to use', 'ackee')
 	.action(async (args, program) => {
 		const runner = new Runner(args, program)
 

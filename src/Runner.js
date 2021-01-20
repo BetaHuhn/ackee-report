@@ -78,15 +78,14 @@ class Runner {
 	}
 
 	async email(data) {
-		const { to, style } = this.args
+		const { to } = this.args
 		const spinner = this.spinner
 
 		try {
 			if (to === undefined) throw new Error(' error: no email recipient specified')
-			if (Constants.style.includes(style) === undefined) throw new Error(` error: style '${ style }' not supported`)
 
-			spinner.text = `Generating email with ${ style } style...`
-			await Report.email(data, this.config.all, { to, style })
+			spinner.text = `Generating email...`
+			await Report.email(data, this.config.all, to)
 
 			return spinner.succeed(` Report sent to: ${ to.join(', ') }`)
 		} catch (err) {

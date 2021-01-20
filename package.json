@@ -5,7 +5,7 @@
 	"bin": "./src/index.js",
 	"scripts": {
 		"lint": "eslint ./src/",
-		"template:dev": "ejs-serve -f ./src/templates/ackee.ejs -d sample-data.json"
+		"template:dev": "ejs-serve -f ./src/templates/mjml.ejs -d sample-data.json"
 	},
 	"repository": {
 		"type": "git",
@@ -31,6 +31,7 @@
 		"dotenv": "^8.2.0",
 		"ejs": "^3.1.5",
 		"feed": "^4.2.1",
+		"mjml": "^4.8.1",
 		"nodemailer": "^6.4.17",
 		"ora": "^5.3.0",
 		"prompt-sync": "^4.2.0"
