@@ -131,15 +131,15 @@ Options:
     -i, --id <ids...>           specify domains by id
     -r, --range <range>         specify data range (default: "month")
     -l, --limit <number>        limit number of list items (default: 3)
+    -e, --events [type]         get event data (default: false)
     -v, --version               output the version number
     -h, --help                  display help for command
 
   Email:
     -t, --to <recipient...>     to whom the report should be sent
-    -s, --style <name>          email style to use (default: "ackee")
 
   RSS/JSON:
-    -o, --output <file>         path to output file (default: "report.xml")
+    -o, --output <file>         path to output file (default: "report.[xml/json]")
 
 Example call:
   $ ackee-report email --domain example.com --to hello@example.com
@@ -161,6 +161,18 @@ This will generate a report for the domain `example.com` and send it via email t
 
 ```shell
 ackee-report email -d example.com example2.com -t hello@example.com hey@example2.com
+```
+
+### Include events in report
+
+```shell
+ackee-report email -d all -t hello@example.com -e
+```
+
+### Average event type
+
+```shell
+ackee-report email -d all -t hello@example.com -e avg
 ```
 
 ### Custom range
