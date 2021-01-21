@@ -51,11 +51,15 @@ class Email {
 			}
 		})
 
-		// Split events into chunks
 		const events = []
 		if (data.events !== undefined && data.events.length > 0) {
-			for (let i = 0; i < data.events.length; i += 2) {
-				events.push(data.events.slice(i, i + 2))
+			const filteredEvents = data.events.filter((item) => item.data !== undefined && item.data.length > 0)
+
+			// Split events into chunks
+			if (filteredEvents.length > 0) {
+				for (let i = 0; i < filteredEvents.length; i += 2) {
+					events.push(filteredEvents.slice(i, i + 2))
+				}
 			}
 		}
 
