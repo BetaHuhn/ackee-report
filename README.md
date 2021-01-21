@@ -8,7 +8,7 @@
 
 CLI tool to generate performance reports of websites using the self-hosted analytics tool Ackee.
 
-![preview](https://cdn.mxis.ch/assets/ackee-report/mockupSmall.png)
+![preview](https://cdn.mxis.ch/assets/ackee-report/report.png)
 
 
 </div>
@@ -221,7 +221,7 @@ ackee-report json -d example.com -o output.json
 
 ## 🖼️ Screenshot
 
-![preview](https://cdn.mxis.ch/assets/ackee-report/multiple.png)
+![Full Report](https://cdn.mxis.ch/assets/ackee-report/reportFull.png)
 
 ## 💻 Development
 
