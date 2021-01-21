@@ -165,9 +165,9 @@
                                 <% insight.data.forEach(function (item) { %>
                                     <mj-text font-size="15px" color="#b9b9b9" >
                                         <% if (item.id.startsWith("http")) { %>
-                                            <p style="margin: 0;"><span style="color: #73fac8; margin-right: 5px;"><%= item.count %>x</span> <a css-class="link" style="color:#b9b9b9 !important" href="<%= item.id %>"><%= item.id %></a></p>
+                                            <p style="margin: 0;"><span style="color: #73fac8; margin-right: 2px; display: inline-block; min-width: 23px;"><%= item.count %>x</span> <a css-class="link" style="color:#b9b9b9 !important" href="<%= item.id %>"><%= item.id %></a></p>
                                         <% } else { %>
-                                            <p style="margin: 0;"><span style="color: #73fac8; margin-right: 5px;"><%= item.count %>x</span> <%= item.id %></p>
+                                            <p style="margin: 0;"><span style="color: #73fac8; margin-right: 2px; display: inline-block; min-width: 23px;"><%= item.count %>x</span> <%= item.id %></p>
                                         <% } %>
                                     </mj-text>
                                 <% }) %>
@@ -198,7 +198,7 @@
                             <mj-column padding-left="5px" padding-bottom="10px" width="100%">
                                 <% event.data.forEach(function (item) { %>
                                     <mj-text font-size="15px" color="#b9b9b9" >
-                                        <p style="margin: 0;"><span style="color: #73fac8; margin-right: 5px;"><%= item.count.toFixed(2) %>x</span> <%= item.id %></p>
+                                        <p style="margin: 0;"><span style="color: #73fac8; margin-right: 5px; display: inline-block; min-width: 23px;"><%= parseFloat(item.count.toFixed(2)) %>x</span> <%= item.id %></p>
                                     </mj-text>
                                 <% }) %>
                             </mj-column>

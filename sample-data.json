@@ -3,8 +3,8 @@
     "viewsYear": 8501,
     "viewsAvg": 0,
     "durationAvg": 21,
-    "names": "piedpiper.com and example.com",
-    "namesShort": "piedpiper.com and example.com",
+    "names": "piedpiper.com and piedpiper.com",
+    "namesShort": "piedpiper.com and piedpiper.com",
     "generatedAt": "2021-01-21 11:32:07",
     "range": {
         "input": "LAST_30_DAYS",
@@ -27,34 +27,38 @@
             [{
                 "title": "Pages",
                 "data": [{
-                        "id": "https://example.com",
-                        "count": 13
+                        "id": "https://piedpiper.com",
+                        "count": 401
                     },
                     {
-                        "id": "https://example.com/contact",
-                        "count": 6
+                        "id": "https://piedpiper.com/contact",
+                        "count": 105
                     },
                     {
-                        "id": "https://example.com/post?id=abc",
-                        "count": 2
+                        "id": "https://piedpiper.com/post?id=abc",
+                        "count": 84
                     },
                     {
-                        "id": "https://example.com/post?id=def",
-                        "count": 1
+                        "id": "https://piedpiper.com/post?id=def",
+                        "count": 10
                     }
                 ]
             }, {
                 "title": "Referrers",
                 "data": [{
                         "id": "http://google.com",
-                        "count": 6
+                        "count": 32
                     },
                     {
-                        "id": "http://baidu.com",
-                        "count": 5
+                        "id": "http://reddit.com",
+                        "count": 12
                     },
                     {
                         "id": "http://twitter.com",
+                        "count": 5
+                    },
+                    {
+                        "id": "http://baidu.com",
                         "count": 3
                     }
                 ]
@@ -63,7 +67,7 @@
                 "title": "Languages",
                 "data": [{
                         "id": "English",
-                        "count": 15
+                        "count": 12
                     },
                     {
                         "id": "Chinese",
@@ -74,8 +78,7 @@
                         "count": 6
                     }
                 ]
-            }],
-            [{
+            }, {
                 "title": "Browsers",
                 "data": [{
                         "id": "UC Browser 11.9.4.974",
@@ -106,8 +109,7 @@
                         "count": 2
                     }
                 ]
-            }],
-            [{
+            },{
                 "title": "Sizes",
                 "data": [{
                         "id": "800px x 600px",
