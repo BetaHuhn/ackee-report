@@ -231,7 +231,7 @@ Run `yarn lint` or `npm run lint` to use eslint.
 
 Please check out the [contributing guide](CONTRIBUTING.md) before you start.
 
-This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). To see differences with previous versions refer to the [CHANGELOG](CHANGELOG.md).
+To see differences with previous versions refer to the [CHANGELOG](CHANGELOG.md).
 
 ## ❔ About
 
