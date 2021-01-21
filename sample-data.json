@@ -1,355 +1,181 @@
 {
-    "domains": [
-        {
-            "id": "01652432-2346-4e1f-b87f-41a369b11d70",
-            "title": "example.com",
-            "viewsAvgDay": 1,
-            "viewsMonth": 32,
-            "viewsYear": 288,
-            "durationAvg": 8,
-            "pages": [
-                {
-                    "id": "https://example.com",
-                    "count": 13
-                },
-                {
-                    "id": "https://example.com/contact",
-                    "count": 6
-                },
-                {
-                    "id": "https://example.com/post?id=abc",
-                    "count": 2
-                },
-                {
-                    "id": "https://example.com/post?id=def",
-                    "count": 1
-                }
-            ],
-            "referrers": [
-				{
-                    "id": "http://google.com",
-                    "count": 6
-				},
-                {
-                    "id": "http://baidu.com",
-                    "count": 5
-				},
-				{
-                    "id": "http://twitter.com",
-                    "count": 3
-                }
-            ],
-            "languages": [
-                {
-                    "id": "English",
-                    "count": 15
-                },
-                {
-                    "id": "Chinese",
-                    "count": 9
-                },
-                {
-                    "id": "German",
-                    "count": 6
-                }
-            ],
-            "browsers": [
-                {
-                    "id": "UC Browser 11.9.4.974",
-                    "count": 9
-                },
-                {
-                    "id": "Chrome 86.0.4240.111",
-                    "count": 5
-                },
-                {
-                    "id": "Chrome 85.0.4183.140",
-                    "count": 3
-                }
-            ],
-            "devices": [
-                {
-                    "id": "Google Google bot 2.1",
-                    "count": 3
-                },
-                {
-                    "id": "Apple iPhone",
-                    "count": 2
-                },
-                {
-                    "id": "Google Nexus 5X",
-                    "count": 2
-                }
-            ],
-            "sizes": [
-                {
-                    "id": "800px x 600px",
-                    "count": 14
-                },
-                {
-                    "id": "1920px x 1080px",
-                    "count": 4
-                },
-                {
-                    "id": "1024px x 1024px",
-                    "count": 3
-                }
-            ],
-            "systems": [
-                {
-                    "id": "Android",
-                    "count": 11
-                },
-                {
-                    "id": "Windows",
-                    "count": 7
-                },
-                {
-                    "id": "iOS",
-                    "count": 2
-                }
-            ]
-        },
-        {
-            "id": "70d52b7b-de7f-4d52-a16b-a505317f3d96",
-            "title": "foo.example.com",
-            "viewsAvgDay": 3,
-            "viewsMonth": 92,
-            "viewsYear": 433,
-            "durationAvg": 13,
-            "pages": [
-                {
-                    "id": "foo.example.com",
-                    "count": 31
-                },
-                {
-                    "id": "foo.example.com/gallery",
-                    "count": 1
-                }
-            ],
-            "referrers": [
-                {
-                    "id": "http://baidu.com",
-                    "count": 9
-                },
-                {
-                    "id": "https://t.co",
-                    "count": 4
-                },
-                {
-                    "id": "https://github.com",
-                    "count": 4
-                },
-                {
-                    "id": "https://t.co/wda2dads?amp=1",
-                    "count": 1
-                }
-            ],
-            "languages": [
-                {
-                    "id": "English",
-                    "count": 15
-                },
-                {
-                    "id": "Chinese",
-                    "count": 9
-                },
-                {
-                    "id": "German",
-                    "count": 6
-                }
-            ],
-            "browsers": [
-                {
-                    "id": "UC Browser 11.9.4.974",
-                    "count": 9
-                },
-                {
-                    "id": "Chrome 86.0.4240.111",
-                    "count": 5
-                },
-                {
-                    "id": "Chrome 85.0.4183.140",
-                    "count": 3
-                }
-            ],
-            "devices": [
-                {
-                    "id": "Google Google bot 2.1",
-                    "count": 3
-                },
-                {
-                    "id": "Apple iPhone",
-                    "count": 2
-                },
-                {
-                    "id": "Google Nexus 5X",
-                    "count": 2
-                }
-            ],
-            "sizes": [
-                {
-                    "id": "800px x 600px",
-                    "count": 14
-                },
-                {
-                    "id": "1920px x 1080px",
-                    "count": 4
-                },
-                {
-                    "id": "1024px x 1024px",
-                    "count": 3
-                }
-            ],
-            "systems": [
-                {
-                    "id": "Android",
-                    "count": 11
-                },
-                {
-                    "id": "Windows",
-                    "count": 7
-                },
-                {
-                    "id": "iOS",
-                    "count": 2
-                }
-            ]
-        },
-        {
-            "id": "2c3c3d38-005d-4874-aed2-4f518ea15609",
-            "title": "app.example.com",
-            "viewsAvgDay": 3,
-            "viewsMonth": 74,
-            "viewsYear": 632,
-            "durationAvg": 17,
-            "pages": [
-                {
-                    "id": "https://app.example.com",
-                    "count": 28
-                },
-                {
-                    "id": "https://app.example.com/inprint",
-                    "count": 3
-                },
-                {
-                    "id": "https://app.example.com/file/help",
-                    "count": 1
-                }
-            ],
-            "referrers": [
-                {
-                    "id": "https://bing.com",
-                    "count": 10
-                },
-                {
-                    "id": "https://example.com",
-                    "count": 7
-                },
-                {
-                    "id": "http://baidu.com",
-                    "count": 1
-                },
-                {
-                    "id": "https://duckduckgo.com",
-                    "count": 1
-                }
-            ],
-            "languages": [
-                {
-                    "id": "English",
-                    "count": 15
-                },
-                {
-                    "id": "Chinese",
-                    "count": 9
-                },
-                {
-                    "id": "German",
-                    "count": 6
-                }
-            ],
-            "browsers": [
-                {
-                    "id": "UC Browser 11.9.4.974",
-                    "count": 9
-                },
-                {
-                    "id": "Chrome 86.0.4240.111",
-                    "count": 5
-                },
-                {
-                    "id": "Chrome 85.0.4183.140",
-                    "count": 3
-                }
-            ],
-            "devices": [
-                {
-                    "id": "Google Google bot 2.1",
-                    "count": 3
-                },
-                {
-                    "id": "Apple iPhone",
-                    "count": 2
-                },
-                {
-                    "id": "Google Nexus 5X",
-                    "count": 2
-                }
-            ],
-            "sizes": [
-                {
-                    "id": "800px x 600px",
-                    "count": 14
-                },
-                {
-                    "id": "1920px x 1080px",
-                    "count": 4
-                },
-                {
-                    "id": "1024px x 1024px",
-                    "count": 3
-                }
-            ],
-            "systems": [
-                {
-                    "id": "Android",
-                    "count": 11
-                },
-                {
-                    "id": "Windows",
-                    "count": 7
-                },
-                {
-                    "id": "iOS",
-                    "count": 2
-                }
-            ]
-		},
-		{
-            "id": "14879f60-7b55-4aa6-8cb9-ed0ccc6b036c",
-            "title": "bar.example.com",
-            "viewsAvgDay": 0,
-            "viewsMonth": 0,
-            "viewsYear": 41,
-            "durationAvg": 0,
-            "pages": [],
-            "referrers": [],
-            "languages": [],
-            "browsers": [],
-            "devices": [],
-            "sizes": [],
-            "systems": []
-        }
-    ],
-    "total": 197,
-    "viewsYear": 1394,
-    "durationAvg": 13,
-    "names": "example.com, foo.example.com, bar.example.com, app.example.com",
-    "namesShort": "example.com, foo.example.com and 2 more",
-    "endpoint": "https://ackee.example.com",
-    "to": [
-        "hello@example.com"
-    ],
-    "generatedAt": "2020-10-31 12:00:41"
+    "viewsInRange": 1204,
+    "viewsYear": 8501,
+    "viewsAvg": 0,
+    "durationAvg": 21,
+    "names": "piedpiper.com and example.com",
+    "namesShort": "piedpiper.com and example.com",
+    "generatedAt": "2021-01-21 11:32:07",
+    "range": {
+        "input": "LAST_30_DAYS",
+        "name": "month",
+        "days": 30,
+        "interval": "monthly"
+    },
+    "endpoint": "https://ackee.piedpiper.com",
+    "to": [ "richard@piedpiper.com" ],
+    "domains": [{
+        "id": "01652432-2346-4e1f-b87f-41a369b11d70",
+        "title": "piedpiper.com",
+        "viewsInRange": 704,
+        "viewsDay": 54,
+        "viewsMonth": 600,
+        "viewsYear": 4501,
+        "viewsAvg": 41,
+        "durationAvg": 25,
+        "rows": [
+            [{
+                "title": "Pages",
+                "data": [{
+                        "id": "https://example.com",
+                        "count": 13
+                    },
+                    {
+                        "id": "https://example.com/contact",
+                        "count": 6
+                    },
+                    {
+                        "id": "https://example.com/post?id=abc",
+                        "count": 2
+                    },
+                    {
+                        "id": "https://example.com/post?id=def",
+                        "count": 1
+                    }
+                ]
+            }, {
+                "title": "Referrers",
+                "data": [{
+                        "id": "http://google.com",
+                        "count": 6
+                    },
+                    {
+                        "id": "http://baidu.com",
+                        "count": 5
+                    },
+                    {
+                        "id": "http://twitter.com",
+                        "count": 3
+                    }
+                ]
+            }],
+            [{
+                "title": "Languages",
+                "data": [{
+                        "id": "English",
+                        "count": 15
+                    },
+                    {
+                        "id": "Chinese",
+                        "count": 9
+                    },
+                    {
+                        "id": "German",
+                        "count": 6
+                    }
+                ]
+            }],
+            [{
+                "title": "Browsers",
+                "data": [{
+                        "id": "UC Browser 11.9.4.974",
+                        "count": 9
+                    },
+                    {
+                        "id": "Chrome 86.0.4240.111",
+                        "count": 5
+                    },
+                    {
+                        "id": "Chrome 85.0.4183.140",
+                        "count": 3
+                    }
+                ]
+            }],
+            [{
+                "title": "Devices",
+                "data": [{
+                        "id": "Google Google bot 2.1",
+                        "count": 3
+                    },
+                    {
+                        "id": "Apple iPhone",
+                        "count": 2
+                    },
+                    {
+                        "id": "Google Nexus 5X",
+                        "count": 2
+                    }
+                ]
+            }],
+            [{
+                "title": "Sizes",
+                "data": [{
+                        "id": "800px x 600px",
+                        "count": 14
+                    },
+                    {
+                        "id": "1920px x 1080px",
+                        "count": 4
+                    },
+                    {
+                        "id": "1024px x 1024px",
+                        "count": 3
+                    }
+                ]
+            }],
+            [{
+                "title": "Systems",
+                "data": [{
+                        "id": "Android",
+                        "count": 11
+                    },
+                    {
+                        "id": "Windows",
+                        "count": 7
+                    },
+                    {
+                        "id": "iOS",
+                        "count": 2
+                    }
+                ]
+            }]
+        ]
+    }],
+    "events": [
+        [{
+            "id": "0941508c-40e7-4305-8684-4370ec20a52a",
+            "title": "Checkout",
+            "data": [{
+                "id": "Tier 1",
+                "count": 56
+            }, {
+                "id": "Tier 2",
+                "count": 22
+            }]
+        }, {
+            "id": "7bf9ba58-e573-4845-8d4f-9008ce36c25d",
+            "title": "Theme preference",
+            "data": [{
+                "id": "Darkmode",
+                "count": 420
+            }, {
+                "id": "Lightmode",
+                "count": 230
+            }]
+        }],
+        [{
+            "id": "afb1d639-1432-41de-a0b2-f5a82d2e5ab2",
+            "title": "Page Errors",
+            "data": [{
+                "id": "Uncaught ReferenceError: bar is not defined",
+                "count": 26
+            }, {
+                "id": "TypeError: 'undefined' is not an object",
+                "count": 6
+            }, {
+                "id": "(unknown): Script error",
+                "count": 2
+            }]
+        }]
+    ]
 }

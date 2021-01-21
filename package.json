@@ -5,7 +5,7 @@
 	"bin": "./src/index.js",
 	"scripts": {
 		"lint": "eslint ./src/",
-		"template:dev": "ejs-serve -f ./src/templates/email.ejs -d sample-data.json"
+		"template:dev": "ejs-serve -f ./src/templates/email.ejs -d sample-data.json -e"
 	},
 	"repository": {
 		"type": "git",
@@ -38,7 +38,7 @@
 	},
 	"devDependencies": {
 		"@betahuhn/config": "^1.0.2",
-		"ejs-serve": "^1.0.2",
+		"ejs-serve": "^1.1.0",
 		"eslint": "^7.18.0"
 	},
 	"publishConfig": {
