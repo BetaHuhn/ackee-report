@@ -1,11 +1,13 @@
-## [Unreleased]
+## [v1.0.0] - 2021-01-21
+
+[Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.0.0) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v0.7.0...v1.0.0) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.0.0)
 
 Events, and an improved email report.
 
 ### New features
 
-- `ackee-report` now supports Events which where added in Ackee V3
-- Improved email report design
+- `ackee-report` now supports events which where added in [Ackee V3](https://github.com/electerious/Ackee/releases/tag/v3.0.0)
+- Improved design of the email report
 
 ### Changes
 
@@ -15,6 +17,7 @@ Events, and an improved email report.
 ### Breaking changes
 
 - There is now only one email style so the `--style` option is no longer valid
+- Due to [breaking changes](https://github.com/electerious/Ackee/blob/v3.0.0/CHANGELOG.md#referrers-require-referrertype-in-graphql-api) in Ackee's API, `ackee-report` now only supports Ackee v3 and later
 
 ## [v0.7.0] - 2021-01-13
 
