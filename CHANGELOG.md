@@ -1,3 +1,11 @@
+## [v1.0.1] - 2021-01-22
+
+[Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.0.1) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.0.0...v1.0.1) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.0.1) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v1.0.1.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v1.0.1.tar.gz))
+
+### Bug fixes
+
+- [`a7a56f7`](https://github.com/BetaHuhn/ackee-report/commit/a7a56f7)  Fix domain title color
+
 ## [v1.0.0] - 2021-01-21
 
 [Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.0.0) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v0.7.0...v1.0.0) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.0.0)
