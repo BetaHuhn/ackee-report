@@ -4,10 +4,10 @@
 
 ### Dependency updates
 
-- [`2d2f79f`](https://github.com/BetaHuhn/ackee-report/commit/2d2f79f)  Bump feed from 4.2.1 to 4.2.2 (#28)
-(Issues: [`#28`](https://github.com/BetaHuhn/ackee-report/issues/28))- [`9c690dd`](https://github.com/BetaHuhn/ackee-report/commit/9c690dd)  Bump ejs-serve from 1.1.0 to 1.2.1 (#29)
-(Issues: [`#29`](https://github.com/BetaHuhn/ackee-report/issues/29))- [`22e6529`](https://github.com/BetaHuhn/ackee-report/commit/22e6529) Bump eslint from 7.18.0 to 7.19.0 (#30)
-(Issues: [`#30`](https://github.com/BetaHuhn/ackee-report/issues/30))- [`8c661ca`](https://github.com/BetaHuhn/ackee-report/commit/8c661ca)  Update dependencies
+- [`2d2f79f`](https://github.com/BetaHuhn/ackee-report/commit/2d2f79f) Bump feed from 4.2.1 to 4.2.2 (#28)
+- [`9c690dd`](https://github.com/BetaHuhn/ackee-report/commit/9c690dd) Bump ejs-serve from 1.1.0 to 1.2.1 (#29)
+- [`22e6529`](https://github.com/BetaHuhn/ackee-report/commit/22e6529) Bump eslint from 7.18.0 to 7.19.0 (#30)
+- [`8c661ca`](https://github.com/BetaHuhn/ackee-report/commit/8c661ca) Update dependencies
 
 ## [v1.0.1] - 2021-01-22
 
