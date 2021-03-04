@@ -1,4 +1,4 @@
-name: Lint CI
+name: Node CI
 on:
   push:
     branches-ignore:
