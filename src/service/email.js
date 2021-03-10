@@ -14,6 +14,7 @@ class Email {
 				pass: password
 			}
 		})
+
 		this.transporter = transporter
 	}
 
