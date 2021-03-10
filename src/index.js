@@ -46,6 +46,24 @@ program
 	})
 
 program
+	.command('html')
+	.description('Generate report and output it to a HTML file')
+	.option('-d, --domain <titles...>', 'specify domains by title')
+	.option('-i, --id <ids...>', 'specify domains by id')
+	.option('-o, --output <file>', 'path to output file', 'report.html')
+	.option('-r, --range <range>', 'specify data range', 'month')
+	.option('-l, --limit <number>', 'limit number of list items', 3)
+	.option('-e, --events [type]', 'get event data', false)
+	.action(async (args, program) => {
+		const runner = new Runner(args, program)
+
+		const data = await runner.getData()
+		if (!data) return
+
+		runner.html(data)
+	})
+
+program
 	.command('rss')
 	.alias('xml')
 	.description('Generate report as a RSS feed')

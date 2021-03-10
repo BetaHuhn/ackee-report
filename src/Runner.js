@@ -101,6 +101,30 @@ class Runner {
 		}
 	}
 
+	async html(data) {
+		const { output } = this.args
+		const spinner = this.spinner
+
+		try {
+			if (output === undefined) throw new Error(' error: no output path specified')
+
+			spinner.text = 'Generating html...'
+			await Report.html(data, this.config.all, output)
+
+			return spinner.succeed(` Report saved to ${ output }`)
+		} catch (err) {
+			if (err.message) {
+				spinner.fail(` ${ err.message }`)
+				return undefined
+			}
+
+			spinner.fail(' error: see below for more details')
+			console.log(err)
+
+			return undefined
+		}
+	}
+
 	async json(data) {
 		const { output } = this.args
 		const spinner = this.spinner
