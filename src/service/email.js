@@ -8,7 +8,7 @@ class Email {
 		const transporter = nodemailer.createTransport({
 			host: host,
 			port: port,
-			secure: true,
+			secure: port === '465',
 			auth: {
 				user: username,
 				pass: password
