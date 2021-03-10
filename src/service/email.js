@@ -7,7 +7,8 @@ class Email {
 		const transporter = nodemailer.createTransport({
 			host: host,
 			port: port,
-			secure: true,
+			// Only start secure connection for port 465, for other ports use STARTTLS - reference: https://git.io/JqZPR
+			secure: port === '465',
 			auth: {
 				user: username,
 				pass: password
