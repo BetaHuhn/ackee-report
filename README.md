@@ -68,13 +68,15 @@ The same token will then be used each time [ackee-report](https://github.com/Bet
 
 ### Email setup
 
-If you want to send your report via email, you have to specify your email providers SMTP server and credentials, aswell as the from option:
+If you want to send your report via email, you have to specify your email providers SMTP server and credentials, as well as the from option:
 
 - *Host* - `smtp.example.com`
 - *Port* - `465`
 - *Username* - `username@example.com`
 - *Password* - `password`
 - *From* - `username@example.com` or `Ackee <username@example.com>`
+
+> **Note:** For port 465 ackee-report will use TLS when connecting to your email server, on all other ports it will use STARTTLS (#44)
 
 Common providers:
 
@@ -120,6 +122,7 @@ CLI tool to generate performance reports of websites using the self-hosted analy
 Commands:
   email [options]             Generate report and send it via email
   json [options]              Query API for data and output it to JSON file
+  html [options]              Generate report and output it to a HTML file
   rss|xml [options]           Generate report as a RSS feed
   domains|domain [titles...]  get domain id by title
   config                      output current config
@@ -138,8 +141,8 @@ Options:
   Email:
     -t, --to <recipient...>     to whom the report should be sent
 
-  RSS/JSON:
-    -o, --output <file>         path to output file (default: "report.[xml/json]")
+  RSS/JSON/HTML:
+    -o, --output <file>         path to output file (default: "report.[xml/json/html]")
 
 Example call:
   $ ackee-report email --domain example.com --to hello@example.com
@@ -217,6 +220,14 @@ You can also save the report in a JSON file:
 
 ```shell
 ackee-report json -d example.com -o output.json
+```
+
+### Output the email report to a HTML file
+
+You can also save the report, which is normally sent via email, directly to an HTML file:
+
+```shell
+ackee-report html -d example.com -o index.html
 ```
 
 ## 🖼️ Screenshot
