@@ -1,3 +1,13 @@
+## [v1.1.0] - 2021-03-10
+
+[Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.1.0) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.0.2...v1.1.0) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.1.0) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v1.1.0.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v1.1.0.tar.gz))
+
+### New features
+
+- [`a22a4f3`](https://github.com/BetaHuhn/ackee-report/commit/a22a4f3)  Dynamically use STARTTLS based on port (#46)
+(Issues: [`#46`](https://github.com/BetaHuhn/ackee-report/issues/46))- [`d258cb6`](https://github.com/BetaHuhn/ackee-report/commit/d258cb6)  Export report as HTML file (#48)
+(Issues: [`#48`](https://github.com/BetaHuhn/ackee-report/issues/48))
+
 ## [v1.0.2] - 2021-03-04
 
 [Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.0.2) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.0.1...v1.0.2) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.0.2) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v1.0.2.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v1.0.2.tar.gz))
