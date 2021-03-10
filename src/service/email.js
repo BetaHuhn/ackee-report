@@ -8,26 +8,13 @@ class Email {
 		const transporter = nodemailer.createTransport({
 			host: host,
 			port: port,
-			secure: true,
+			secure: port === '465',
 			auth: {
 				user: username,
 				pass: password
 			}
 		})
 		this.transporter = transporter
-
-		if (port === '587' || port === '25') {
-			const transporter = nodemailer.createTransport({
-				host: host,
-				port: port,
-				secure: false,
-				auth: {
-					user: username,
-					pass: password
-				}
-			})
-			this.transporter = transporter
-		}
 	}
 
 	async render(data, endpoint, to) {
