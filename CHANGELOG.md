@@ -1,3 +1,12 @@
+## [v1.1.1] - 2021-03-15
+
+[Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.1.1) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.1.0...v1.1.1) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.1.1) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v1.1.1.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v1.1.1.tar.gz))
+
+### Dependency updates
+
+- [`73ce31c`](https://github.com/BetaHuhn/ackee-report/commit/73ce31c)  Bump ejs-serve from 1.2.5 to 1.2.6 (#43)
+(Issues: [`#43`](https://github.com/BetaHuhn/ackee-report/issues/43))
+
 ## [v1.1.0] - 2021-03-10
 
 [Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.1.0) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.0.2...v1.1.0) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.1.0) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v1.1.0.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v1.1.0.tar.gz))
