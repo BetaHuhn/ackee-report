@@ -1,3 +1,14 @@
+## [v1.1.2] - 2021-03-22
+
+[Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.1.2) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.1.1...v1.1.2) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.1.2) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v1.1.2.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v1.1.2.tar.gz))
+
+### Dependency updates
+
+- [`6fc8d6f`](https://github.com/BetaHuhn/ackee-report/commit/6fc8d6f)  Bump ora from 5.3.0 to 5.4.0 (#51)
+(Issues: [`#51`](https://github.com/BetaHuhn/ackee-report/issues/51))- [`1deb5af`](https://github.com/BetaHuhn/ackee-report/commit/1deb5af)  Bump ejs-serve from 1.2.6 to 1.2.7 (#50)
+(Issues: [`#50`](https://github.com/BetaHuhn/ackee-report/issues/50))- [`42f490a`](https://github.com/BetaHuhn/ackee-report/commit/42f490a)  Bump eslint from 7.21.0 to 7.22.0 (#49)
+(Issues: [`#49`](https://github.com/BetaHuhn/ackee-report/issues/49))
+
 ## [v1.1.1] - 2021-03-15
 
 [Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.1.1) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.1.0...v1.1.1) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.1.1) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v1.1.1.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v1.1.1.tar.gz))
