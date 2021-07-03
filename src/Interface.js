@@ -187,8 +187,12 @@ class Ackee {
 						id
 						title
 						facts {
-							averageViews
-							averageDuration
+							averageViews {
+								count
+							}
+							averageDuration {
+								count
+							}
 							viewsMonth
 							viewsYear
 							viewsToday
