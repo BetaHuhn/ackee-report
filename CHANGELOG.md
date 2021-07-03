@@ -1,3 +1,11 @@
+## [v1.1.3] - 2021-06-28
+
+[Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.1.3) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.1.2...v1.1.3) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.1.3) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v1.1.3.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v1.1.3.tar.gz))
+
+### Dependency updates
+
+- [`4c579a3`](https://github.com/BetaHuhn/ackee-report/commit/4c579a3)  Upgrade dependencies
+
 ## [v1.1.2] - 2021-03-22
 
 [Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.1.2) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.1.1...v1.1.2) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.1.2) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v1.1.2.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v1.1.2.tar.gz))
