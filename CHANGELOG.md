@@ -1,3 +1,15 @@
+## [v2.0.0] - 2021-07-03
+
+[Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v2.0.0) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.1.3...v2.0.0) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v2.0.0) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v2.0.0.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v2.0.0.tar.gz))
+
+### Dependency updates
+
+- [`33707f3`](https://github.com/BetaHuhn/ackee-report/commit/33707f3)  Upgrade dependencies
+
+### Breaking changes
+
+- [`aa8d547`](https://github.com/BetaHuhn/ackee-report/commit/aa8d547)  Update query to changes in Ackee v3.1.1&#x27;s GraphQL API
+
 ## [v1.1.3] - 2021-06-28
 
 [Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v1.1.3) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.1.2...v1.1.3) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v1.1.3) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v1.1.3.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v1.1.3.tar.gz))
