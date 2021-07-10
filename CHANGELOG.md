@@ -1,3 +1,11 @@
+## [v2.0.1] - 2021-07-10
+
+[Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v2.0.1) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v2.0.0...v2.0.1) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v2.0.1) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v2.0.1.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v2.0.1.tar.gz))
+
+### Bug fixes
+
+- [`f55126c`](https://github.com/BetaHuhn/ackee-report/commit/f55126c)  Display data correctly
+
 ## [v2.0.0] - 2021-07-03
 
 [Release notes](https://github.com/BetaHuhn/ackee-report/releases/tag/v2.0.0) · [Compare](https://github.com/BetaHuhn/ackee-report/compare/v1.1.3...v2.0.0) · [Tag](https://github.com/BetaHuhn/ackee-report/tree/v2.0.0) · Archive ([zip](https://github.com/BetaHuhn/ackee-report/archive/v2.0.0.zip) · [tar.gz](https://github.com/BetaHuhn/ackee-report/archive/v2.0.0.tar.gz))
