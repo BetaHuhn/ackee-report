@@ -124,8 +124,8 @@ class Ackee {
 
 		// Calculate overall duration average
 		const durationAvg = () => {
-			const durations = data.filter((domain) => domain.facts.averageDuration > 0)
-			const avg = data.reduce((n, { facts }) => n + facts.averageDuration, 0) / durations.length
+			const durations = data.filter((domain) => domain.facts.averageDuration.count > 0)
+			const avg = data.reduce((n, { facts }) => n + facts.averageDuration.count, 0) / durations.length
 			return Math.round(avg / 1000)
 		}
 
@@ -143,8 +143,8 @@ class Ackee {
 				viewsDay: domain.facts.viewsToday,
 				viewsMonth: domain.facts.viewsMonth,
 				viewsYear: domain.facts.viewsYear,
-				viewsAvg: domain.facts.averageViews,
-				durationAvg: Math.round(domain.facts.averageDuration / 1000),
+				viewsAvg: domain.facts.averageViews.count,
+				durationAvg: Math.round(domain.facts.averageDuration.count / 1000),
 				pages: domain.statistics.pages,
 				referrers: domain.statistics.referrers,
 				languages: domain.statistics.languages,
@@ -199,36 +199,36 @@ class Ackee {
 						}
 						statistics {
 							views(interval: DAILY, type: UNIQUE, limit: ${ this.range.days }) {
-								id
 								count
+								id: value
 							}
 							pages(sorting: TOP, limit: ${ this.limit }, range: $range) {
-								id
 								count
+								id: value
 							}
 							referrers(sorting: TOP, limit: ${ this.limit }, range: $range, type: WITH_SOURCE) {
-								id
 								count
+								id: value
 							}
 							languages(sorting: TOP, limit: ${ this.limit }, range: $range) {
-								id
 								count
+								id: value
 							}
 							browsers(sorting: TOP, type: WITH_VERSION, limit: ${ this.limit }, range: $range) {
-								id
 								count
+								id: value
 							}
 							devices(sorting: TOP, type: WITH_MODEL, limit: ${ this.limit }, range: $range) {
-								id
 								count
+								id: value
 							}
 							sizes(sorting: TOP, type: SCREEN_RESOLUTION, limit: ${ this.limit }, range: $range) {
-								id
 								count
+								id: value
 							}
 							systems(sorting: TOP, type: NO_VERSION, limit: ${ this.limit }, range: $range) {
-								id
 								count
+								id: value
 							}
 						}
 					}
@@ -249,6 +249,8 @@ class Ackee {
 
 			const domain = data.data.domain
 
+			console.log(domain)
+
 			return domain
 
 		} catch (err) {
@@ -265,7 +267,7 @@ class Ackee {
 						title
 						statistics {
 							list(sorting: TOP, type: ${ this.eventType }, range: $range, limit: ${ this.limit }) {
-								id
+								id: value
 								count
 							}
 						}
