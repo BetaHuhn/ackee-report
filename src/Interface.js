@@ -15,6 +15,7 @@ class Ackee {
 
 		const endpoint = this._endpoint(config.server)
 		this.axios = axios.create({ baseURL: endpoint })
+		this.axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 		// Intercept any errors which are returned by the Ackee API
 		this.axios.interceptors.response.use((response) => {
